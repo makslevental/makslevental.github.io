@@ -1,4 +1,5 @@
 ---
+layout: post
 author:
 - Maksim Levental
 bibliography: /Users/maksim/dev_projects/pytorch_abstraction_comparison/tex/main.bib

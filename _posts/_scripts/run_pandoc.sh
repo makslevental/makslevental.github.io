@@ -1,11 +1,11 @@
 set -e
 
-TEXFILE_DIR=/Users/maksim/dev_projects/school_work/notes/basic_graph_algos
+TEXFILE_DIR=/Users/mlevental/dev_projects/school_work/spring2021/CMSC32900/
 cp latexpand $TEXFILE_DIR/
-export PROJECTNAME=graphs
+export PROJECTNAME=quantumtensors
 
-TEXFILE=conf.tex
-BIBLIO=
+TEXFILE=main.tex
+BIBLIO=biblio.bib
 FLOATS_TEXFILE=floats
 export FLOATS_LABELED=$TEXFILE_DIR/${FLOATS_TEXFILE}_labeled.pdf
 echo $FLOATS_LABELED

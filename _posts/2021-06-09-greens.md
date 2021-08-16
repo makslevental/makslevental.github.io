@@ -1,4 +1,5 @@
 ---
+layout: post
 author:
 - Maksim Levental
 excerpt_separator: <!--more-->

@@ -1,4 +1,5 @@
 ---
+layout: post
 author:
 - Maksim Levental
 - Ryan Chard

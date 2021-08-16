@@ -1,4 +1,5 @@
 ---
+layout: post
 author:
 - Maksim Levental
 bibliography: /Users/maksim/dev_projects/school_work/spring2021/CMSC32900/biblio.bib
