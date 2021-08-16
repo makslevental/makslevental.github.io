@@ -9,6 +9,8 @@ title: PyTorch Tensor and Operator weedy details
 
 This "brain dump" will consist of weedy implementation details about PyTorch that I picked up during my '21 summer internship. I'll describe what a PyTorch `Tensor` actually is (stride, `dtype`, and layout), what are "views", what a PyTorch operator is and how its executed, and how to create a new operator. Note that this post is mostly about the `C++` side of things.
 
+<!--more-->
+
 # Prologue: Dispatch
 
 The implementation of `Tensor`, and therefore much of operating on `Tensor`s, is closely coupled with the implementation of the PyTorch "dispatcher". The point of the dispatcher is that it factors the implementation of an operator into multiple *kernels*, each of which implements functionality for a specific *dispatch key*, e.g. different hardware platforms such as CPU and GPU but also "metaphorical" platforms such as [MetaTensor](https://github.com/pytorch/pytorch/blob/a421cba325bd816e8b6f40b8823533819124ab71/aten/src/ATen/native/MetaTensor.cpp). The reason this isn't straightforward is because `Tensors` come in all shapes and sizes (more on this in the forthcoming). The dispatcher determines what the highest priority dispatch key is at the time you call an operator (by considering the types of the tensor arguments as well as some thread local state), and delegates to the kernel for that dispatch key. The dispatcher aims, in principle, to reproduce the power of primitive (i.e., baked into a language) [Dynamic dispatch](https://en.wikipedia.org/wiki/Dynamic_dispatch) but in a way that's extensible (i.e., such that new dispatch targets can be added without wholesale recompilation). You can "observe" the dispatcher performing its magic by inspecting a stack trace; for example, `conv2d`
