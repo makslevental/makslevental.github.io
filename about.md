@@ -14,11 +14,9 @@ Currently I'm working on Hardware/Software Co-design for Scientific HPC. That is
 
 Previously I worked on the [BlindML](https://github.com/TheDataStation/blindml/) components of the [Data Station](https://thedatastation.github.io/).
 
-
 I've also interned at Facebook as a Ranking Engineer in the Groups team and as a Compiler Engineer in the PyTorch team.
 
 I got my MS in CS at University of Florida in [Joseph Wilson's](https://www.cise.ufl.edu/~jnw/) group where I worked on SDEs for landmine detection in GPR data. 
-
 Before CS, I got my BS in Pure Math at Florida State University and then taught math at a secondary school in Mbale, Uganda as a Peace Corps volunteer.
 
 <p align="center">
