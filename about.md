@@ -7,8 +7,9 @@ permalink: /about/
 ## Bio
 
 I'm a ~3rd year CS PhD student at University of Chicago in [Ian Foster's](https://labs.globus.org/) distributed systems group.
+
 Broadly, my interests lie at the intersection of systems and Deep Learning/Machine Learning/Computer Vision, with scientific applications.
-In particular efficient parallelization of techniques such as [Blob Detection](https://en.wikipedia.org/wiki/Blob_detection) across GPU clusters.
+For example, efficient parallelization of techniques such as [Blob Detection](https://en.wikipedia.org/wiki/Blob_detection) across GPU clusters.
 This includes image recognition and classification for imagery produced by scientific instruments such as the [APS at ANL](https://www.aps.anl.gov/Beamlines).
 Currently I'm working on Hardware/Software Co-design for Scientific HPC. That is to say, using hardware description languages such as Verilog and Chisel to implement in-silico algorithms for scientific use cases (such as [Bragg peak detection](https://github.com/makslevental/braggnn_fpga)).
 
