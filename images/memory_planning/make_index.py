@@ -31,11 +31,24 @@ names = sorted(names)
 with open("index.html" , "w") as f:
     f.write("<html>\n")
     f.write("<ul>\n")
+
     for name, fp in names:
+        if "memory usage" not in name: continue
+        f.write(f"""<li><a href='#{fp.replace(".svg", "")}'>{name}</a></li>\n""")
+    
+    for name, fp in names:
+        if "memory usage" in name: continue
         f.write(f"""<li><a href='#{fp.replace(".svg", "")}'>{name}</a></li>\n""")
     f.write("</ul>\n\n")
 
     for name, fp in names:
+        if "memory usage" not in name: continue
+        f.write(f"""<h1 id="{fp.replace(".svg", "")}">{name}</h1>\n""")
+        f.write(f"""<object data="{fp}" type="image/svg+xml"></object>\n""")
+        f.write("<p></p>\n\n")
+
+    for name, fp in names:
+        if "memory usage" in name: continue
         f.write(f"""<h1 id="{fp.replace(".svg", "")}">{name}</h1>\n""")
         f.write(f"""<object data="{fp}" type="image/svg+xml"></object>\n""")
         f.write("<p></p>\n\n")
