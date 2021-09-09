@@ -1,12 +1,14 @@
 <html>
 <ul>
-<li><a href='#memory_usage_for_strats_and_models_for_profiled_plans'>memory usage for strats and models for profiled plans</a></li>
-<li><a href='#memory_usage_for_strats_and_models_for_static_plans'>memory usage for strats and models for static plans</a></li>
-<li><a href='#bert_profiled_greedy_by_breadth'>bert profiled greedy by breadth</a></li>
+
+    <li><a href='#memory_usage_for_strats_and_models_for_profiled_plans'>memory usage for strats and models for profiled plans</a></li>
+    <li><a href='#memory_usage_for_strats_and_models_for_static_plans'>memory usage for strats and models for static plans</a></li>
+    <li><a href='#bert_profiled_greedy_by_breadth'>bert profiled greedy by breadth</a></li>
 <li><a href='#bert_profiled_greedy_by_longest_and_size_with_first_gap'>bert profiled greedy by longest and size with first gap</a></li>
 <li><a href='#bert_profiled_greedy_by_longest_and_size_with_smallest_gap'>bert profiled greedy by longest and size with smallest gap</a></li>
 <li><a href='#bert_profiled_greedy_by_size_with_first_gap'>bert profiled greedy by size with first gap</a></li>
 <li><a href='#bert_profiled_greedy_by_size_with_smallest_gap'>bert profiled greedy by size with smallest gap</a></li>
+<li><a href='#bert_profiled_mip'>bert profiled mip</a></li>
 <li><a href='#bert_profiled_naive'>bert profiled naive</a></li>
 <li><a href='#bert_static_greedy_by_breadth'>bert static greedy by breadth</a></li>
 <li><a href='#bert_static_greedy_by_longest_and_size_with_first_gap'>bert static greedy by longest and size with first gap</a></li>
@@ -14,6 +16,7 @@
 <li><a href='#bert_static_greedy_by_size_with_first_gap'>bert static greedy by size with first gap</a></li>
 <li><a href='#bert_static_greedy_by_size_with_smallest_gap'>bert static greedy by size with smallest gap</a></li>
 <li><a href='#bert_static_linear_scan'>bert static linear scan</a></li>
+<li><a href='#bert_static_mip'>bert static mip</a></li>
 <li><a href='#bert_static_naive'>bert static naive</a></li>
 <li><a href='#colorscale'>colorscale</a></li>
 <li><a href='#dcgan_profiled_greedy_by_breadth'>dcgan profiled greedy by breadth</a></li>
@@ -29,8 +32,8 @@
 <li><a href='#dcgan_static_greedy_by_size_with_first_gap'>dcgan static greedy by size with first gap</a></li>
 <li><a href='#dcgan_static_greedy_by_size_with_smallest_gap'>dcgan static greedy by size with smallest gap</a></li>
 <li><a href='#dcgan_static_linear_scan'>dcgan static linear scan</a></li>
+<li><a href='#dcgan_static_mip'>dcgan static mip</a></li>
 <li><a href='#dcgan_static_naive'>dcgan static naive</a></li>
-<li><a href='#dcgan_static_static_mip'>dcgan static static mip</a></li>
 <li><a href='#rel_mem_usage'>rel mem usage</a></li>
 <li><a href='#resnet101_profiled_greedy_by_breadth'>resnet101 profiled greedy by breadth</a></li>
 <li><a href='#resnet101_profiled_greedy_by_longest_and_size_with_first_gap'>resnet101 profiled greedy by longest and size with first gap</a></li>
@@ -45,13 +48,14 @@
 <li><a href='#resnet101_static_greedy_by_size_with_first_gap'>resnet101 static greedy by size with first gap</a></li>
 <li><a href='#resnet101_static_greedy_by_size_with_smallest_gap'>resnet101 static greedy by size with smallest gap</a></li>
 <li><a href='#resnet101_static_linear_scan'>resnet101 static linear scan</a></li>
+<li><a href='#resnet101_static_mip'>resnet101 static mip</a></li>
 <li><a href='#resnet101_static_naive'>resnet101 static naive</a></li>
-<li><a href='#resnet101_static_static_mip'>resnet101 static static mip</a></li>
 <li><a href='#resnet152_profiled_greedy_by_breadth'>resnet152 profiled greedy by breadth</a></li>
 <li><a href='#resnet152_profiled_greedy_by_longest_and_size_with_first_gap'>resnet152 profiled greedy by longest and size with first gap</a></li>
 <li><a href='#resnet152_profiled_greedy_by_longest_and_size_with_smallest_gap'>resnet152 profiled greedy by longest and size with smallest gap</a></li>
 <li><a href='#resnet152_profiled_greedy_by_size_with_first_gap'>resnet152 profiled greedy by size with first gap</a></li>
 <li><a href='#resnet152_profiled_greedy_by_size_with_smallest_gap'>resnet152 profiled greedy by size with smallest gap</a></li>
+<li><a href='#resnet152_profiled_mip'>resnet152 profiled mip</a></li>
 <li><a href='#resnet152_profiled_naive'>resnet152 profiled naive</a></li>
 <li><a href='#resnet152_static_greedy_by_breadth'>resnet152 static greedy by breadth</a></li>
 <li><a href='#resnet152_static_greedy_by_longest_and_size_with_first_gap'>resnet152 static greedy by longest and size with first gap</a></li>
@@ -59,8 +63,8 @@
 <li><a href='#resnet152_static_greedy_by_size_with_first_gap'>resnet152 static greedy by size with first gap</a></li>
 <li><a href='#resnet152_static_greedy_by_size_with_smallest_gap'>resnet152 static greedy by size with smallest gap</a></li>
 <li><a href='#resnet152_static_linear_scan'>resnet152 static linear scan</a></li>
+<li><a href='#resnet152_static_mip'>resnet152 static mip</a></li>
 <li><a href='#resnet152_static_naive'>resnet152 static naive</a></li>
-<li><a href='#resnet152_static_static_mip'>resnet152 static static mip</a></li>
 <li><a href='#resnet18_cvxpy_mip'>resnet18 cvxpy mip</a></li>
 <li><a href='#resnet18_profiled_greedy_by_breadth'>resnet18 profiled greedy by breadth</a></li>
 <li><a href='#resnet18_profiled_greedy_by_longest_and_size_with_first_gap'>resnet18 profiled greedy by longest and size with first gap</a></li>
@@ -70,17 +74,13 @@
 <li><a href='#resnet18_profiled_mip'>resnet18 profiled mip</a></li>
 <li><a href='#resnet18_profiled_naive'>resnet18 profiled naive</a></li>
 <li><a href='#resnet18_static_greedy_by_breadth'>resnet18 static greedy by breadth</a></li>
-<li><a href='#resnet18_static_greedy_by_breadth_with_envelope'>resnet18 static greedy by breadth with envelope</a></li>
-<li><a href='#resnet18_static_greedy_by_breadth_with_shading'>resnet18 static greedy by breadth with shading</a></li>
 <li><a href='#resnet18_static_greedy_by_longest_and_size_with_first_gap'>resnet18 static greedy by longest and size with first gap</a></li>
 <li><a href='#resnet18_static_greedy_by_longest_and_size_with_smallest_gap'>resnet18 static greedy by longest and size with smallest gap</a></li>
 <li><a href='#resnet18_static_greedy_by_size_with_first_gap'>resnet18 static greedy by size with first gap</a></li>
 <li><a href='#resnet18_static_greedy_by_size_with_smallest_gap'>resnet18 static greedy by size with smallest gap</a></li>
-<li><a href='#resnet18_static_greedy_by_size_with_smallest_gap_with_envelope'>resnet18 static greedy by size with smallest gap with envelope</a></li>
-<li><a href='#resnet18_static_greedy_by_size_with_smallest_gap_with_shading'>resnet18 static greedy by size with smallest gap with shading</a></li>
 <li><a href='#resnet18_static_linear_scan'>resnet18 static linear scan</a></li>
+<li><a href='#resnet18_static_mip'>resnet18 static mip</a></li>
 <li><a href='#resnet18_static_naive'>resnet18 static naive</a></li>
-<li><a href='#resnet18_static_static_mip'>resnet18 static static mip</a></li>
 <li><a href='#resnet34_profiled_greedy_by_breadth'>resnet34 profiled greedy by breadth</a></li>
 <li><a href='#resnet34_profiled_greedy_by_longest_and_size_with_first_gap'>resnet34 profiled greedy by longest and size with first gap</a></li>
 <li><a href='#resnet34_profiled_greedy_by_longest_and_size_with_smallest_gap'>resnet34 profiled greedy by longest and size with smallest gap</a></li>
@@ -94,8 +94,8 @@
 <li><a href='#resnet34_static_greedy_by_size_with_first_gap'>resnet34 static greedy by size with first gap</a></li>
 <li><a href='#resnet34_static_greedy_by_size_with_smallest_gap'>resnet34 static greedy by size with smallest gap</a></li>
 <li><a href='#resnet34_static_linear_scan'>resnet34 static linear scan</a></li>
+<li><a href='#resnet34_static_mip'>resnet34 static mip</a></li>
 <li><a href='#resnet34_static_naive'>resnet34 static naive</a></li>
-<li><a href='#resnet34_static_static_mip'>resnet34 static static mip</a></li>
 <li><a href='#resnet50_profiled_greedy_by_breadth'>resnet50 profiled greedy by breadth</a></li>
 <li><a href='#resnet50_profiled_greedy_by_longest_and_size_with_first_gap'>resnet50 profiled greedy by longest and size with first gap</a></li>
 <li><a href='#resnet50_profiled_greedy_by_longest_and_size_with_smallest_gap'>resnet50 profiled greedy by longest and size with smallest gap</a></li>
@@ -109,13 +109,14 @@
 <li><a href='#resnet50_static_greedy_by_size_with_first_gap'>resnet50 static greedy by size with first gap</a></li>
 <li><a href='#resnet50_static_greedy_by_size_with_smallest_gap'>resnet50 static greedy by size with smallest gap</a></li>
 <li><a href='#resnet50_static_linear_scan'>resnet50 static linear scan</a></li>
+<li><a href='#resnet50_static_mip'>resnet50 static mip</a></li>
 <li><a href='#resnet50_static_naive'>resnet50 static naive</a></li>
-<li><a href='#resnet50_static_static_mip'>resnet50 static static mip</a></li>
 <li><a href='#small_bert_profiled_greedy_by_breadth'>small_bert profiled greedy by breadth</a></li>
 <li><a href='#small_bert_profiled_greedy_by_longest_and_size_with_first_gap'>small_bert profiled greedy by longest and size with first gap</a></li>
 <li><a href='#small_bert_profiled_greedy_by_longest_and_size_with_smallest_gap'>small_bert profiled greedy by longest and size with smallest gap</a></li>
 <li><a href='#small_bert_profiled_greedy_by_size_with_first_gap'>small_bert profiled greedy by size with first gap</a></li>
 <li><a href='#small_bert_profiled_greedy_by_size_with_smallest_gap'>small_bert profiled greedy by size with smallest gap</a></li>
+<li><a href='#small_bert_profiled_mip'>small_bert profiled mip</a></li>
 <li><a href='#small_bert_profiled_naive'>small_bert profiled naive</a></li>
 <li><a href='#small_bert_static_greedy_by_breadth'>small_bert static greedy by breadth</a></li>
 <li><a href='#small_bert_static_greedy_by_longest_and_size_with_first_gap'>small_bert static greedy by longest and size with first gap</a></li>
@@ -123,6 +124,7 @@
 <li><a href='#small_bert_static_greedy_by_size_with_first_gap'>small_bert static greedy by size with first gap</a></li>
 <li><a href='#small_bert_static_greedy_by_size_with_smallest_gap'>small_bert static greedy by size with smallest gap</a></li>
 <li><a href='#small_bert_static_linear_scan'>small_bert static linear scan</a></li>
+<li><a href='#small_bert_static_mip'>small_bert static mip</a></li>
 <li><a href='#small_bert_static_naive'>small_bert static naive</a></li>
 <li><a href='#unet_profiled_greedy_by_breadth'>unet profiled greedy by breadth</a></li>
 <li><a href='#unet_profiled_greedy_by_longest_and_size_with_first_gap'>unet profiled greedy by longest and size with first gap</a></li>
@@ -137,19 +139,19 @@
 <li><a href='#unet_static_greedy_by_size_with_first_gap'>unet static greedy by size with first gap</a></li>
 <li><a href='#unet_static_greedy_by_size_with_smallest_gap'>unet static greedy by size with smallest gap</a></li>
 <li><a href='#unet_static_linear_scan'>unet static linear scan</a></li>
+<li><a href='#unet_static_mip'>unet static mip</a></li>
 <li><a href='#unet_static_naive'>unet static naive</a></li>
-<li><a href='#unet_static_static_mip'>unet static static mip</a></li>
 </ul>
 
-<h1 id="memory_usage_for_strats_and_models_for_profiled_plans">memory usage for strats and models for profiled plans</h1>
-<object data="memory_usage_for_strats_and_models_for_profiled_plans.svg" type="image/svg+xml"></object>
-<p></p>
 
-<h1 id="memory_usage_for_strats_and_models_for_static_plans">memory usage for strats and models for static plans</h1>
-<object data="memory_usage_for_strats_and_models_for_static_plans.svg" type="image/svg+xml"></object>
-<p></p>
+    <h1 id="memory_usage_for_strats_and_models_for_profiled_plans">memory usage for strats and models for profiled plans</h1>
+    <object data="memory_usage_for_strats_and_models_for_profiled_plans.svg" type="image/svg+xml"></object>
+    <p></p>
 
-<h1 id="bert_profiled_greedy_by_breadth">bert profiled greedy by breadth</h1>
+    <h1 id="memory_usage_for_strats_and_models_for_static_plans">memory usage for strats and models for static plans</h1>
+    <object data="memory_usage_for_strats_and_models_for_static_plans.svg" type="image/svg+xml"></object>
+    <p></p>
+    <h1 id="bert_profiled_greedy_by_breadth">bert profiled greedy by breadth</h1>
 <object data="bert_profiled_greedy_by_breadth.svg" type="image/svg+xml"></object>
 <p></p>
 
@@ -167,6 +169,10 @@
 
 <h1 id="bert_profiled_greedy_by_size_with_smallest_gap">bert profiled greedy by size with smallest gap</h1>
 <object data="bert_profiled_greedy_by_size_with_smallest_gap.svg" type="image/svg+xml"></object>
+<p></p>
+
+<h1 id="bert_profiled_mip">bert profiled mip</h1>
+<object data="bert_profiled_mip.svg" type="image/svg+xml"></object>
 <p></p>
 
 <h1 id="bert_profiled_naive">bert profiled naive</h1>
@@ -195,6 +201,10 @@
 
 <h1 id="bert_static_linear_scan">bert static linear scan</h1>
 <object data="bert_static_linear_scan.svg" type="image/svg+xml"></object>
+<p></p>
+
+<h1 id="bert_static_mip">bert static mip</h1>
+<object data="bert_static_mip.svg" type="image/svg+xml"></object>
 <p></p>
 
 <h1 id="bert_static_naive">bert static naive</h1>
@@ -257,12 +267,12 @@
 <object data="dcgan_static_linear_scan.svg" type="image/svg+xml"></object>
 <p></p>
 
-<h1 id="dcgan_static_naive">dcgan static naive</h1>
-<object data="dcgan_static_naive.svg" type="image/svg+xml"></object>
+<h1 id="dcgan_static_mip">dcgan static mip</h1>
+<object data="dcgan_static_mip.svg" type="image/svg+xml"></object>
 <p></p>
 
-<h1 id="dcgan_static_static_mip">dcgan static static mip</h1>
-<object data="dcgan_static_static_mip.svg" type="image/svg+xml"></object>
+<h1 id="dcgan_static_naive">dcgan static naive</h1>
+<object data="dcgan_static_naive.svg" type="image/svg+xml"></object>
 <p></p>
 
 <h1 id="rel_mem_usage">rel mem usage</h1>
@@ -321,12 +331,12 @@
 <object data="resnet101_static_linear_scan.svg" type="image/svg+xml"></object>
 <p></p>
 
-<h1 id="resnet101_static_naive">resnet101 static naive</h1>
-<object data="resnet101_static_naive.svg" type="image/svg+xml"></object>
+<h1 id="resnet101_static_mip">resnet101 static mip</h1>
+<object data="resnet101_static_mip.svg" type="image/svg+xml"></object>
 <p></p>
 
-<h1 id="resnet101_static_static_mip">resnet101 static static mip</h1>
-<object data="resnet101_static_static_mip.svg" type="image/svg+xml"></object>
+<h1 id="resnet101_static_naive">resnet101 static naive</h1>
+<object data="resnet101_static_naive.svg" type="image/svg+xml"></object>
 <p></p>
 
 <h1 id="resnet152_profiled_greedy_by_breadth">resnet152 profiled greedy by breadth</h1>
@@ -347,6 +357,10 @@
 
 <h1 id="resnet152_profiled_greedy_by_size_with_smallest_gap">resnet152 profiled greedy by size with smallest gap</h1>
 <object data="resnet152_profiled_greedy_by_size_with_smallest_gap.svg" type="image/svg+xml"></object>
+<p></p>
+
+<h1 id="resnet152_profiled_mip">resnet152 profiled mip</h1>
+<object data="resnet152_profiled_mip.svg" type="image/svg+xml"></object>
 <p></p>
 
 <h1 id="resnet152_profiled_naive">resnet152 profiled naive</h1>
@@ -377,12 +391,12 @@
 <object data="resnet152_static_linear_scan.svg" type="image/svg+xml"></object>
 <p></p>
 
-<h1 id="resnet152_static_naive">resnet152 static naive</h1>
-<object data="resnet152_static_naive.svg" type="image/svg+xml"></object>
+<h1 id="resnet152_static_mip">resnet152 static mip</h1>
+<object data="resnet152_static_mip.svg" type="image/svg+xml"></object>
 <p></p>
 
-<h1 id="resnet152_static_static_mip">resnet152 static static mip</h1>
-<object data="resnet152_static_static_mip.svg" type="image/svg+xml"></object>
+<h1 id="resnet152_static_naive">resnet152 static naive</h1>
+<object data="resnet152_static_naive.svg" type="image/svg+xml"></object>
 <p></p>
 
 <h1 id="resnet18_cvxpy_mip">resnet18 cvxpy mip</h1>
@@ -421,14 +435,6 @@
 <object data="resnet18_static_greedy_by_breadth.svg" type="image/svg+xml"></object>
 <p></p>
 
-<h1 id="resnet18_static_greedy_by_breadth_with_envelope">resnet18 static greedy by breadth with envelope</h1>
-<object data="resnet18_static_greedy_by_breadth_with_envelope.svg" type="image/svg+xml"></object>
-<p></p>
-
-<h1 id="resnet18_static_greedy_by_breadth_with_shading">resnet18 static greedy by breadth with shading</h1>
-<object data="resnet18_static_greedy_by_breadth_with_shading.svg" type="image/svg+xml"></object>
-<p></p>
-
 <h1 id="resnet18_static_greedy_by_longest_and_size_with_first_gap">resnet18 static greedy by longest and size with first gap</h1>
 <object data="resnet18_static_greedy_by_longest_and_size_with_first_gap.svg" type="image/svg+xml"></object>
 <p></p>
@@ -445,24 +451,16 @@
 <object data="resnet18_static_greedy_by_size_with_smallest_gap.svg" type="image/svg+xml"></object>
 <p></p>
 
-<h1 id="resnet18_static_greedy_by_size_with_smallest_gap_with_envelope">resnet18 static greedy by size with smallest gap with envelope</h1>
-<object data="resnet18_static_greedy_by_size_with_smallest_gap_with_envelope.svg" type="image/svg+xml"></object>
-<p></p>
-
-<h1 id="resnet18_static_greedy_by_size_with_smallest_gap_with_shading">resnet18 static greedy by size with smallest gap with shading</h1>
-<object data="resnet18_static_greedy_by_size_with_smallest_gap_with_shading.svg" type="image/svg+xml"></object>
-<p></p>
-
 <h1 id="resnet18_static_linear_scan">resnet18 static linear scan</h1>
 <object data="resnet18_static_linear_scan.svg" type="image/svg+xml"></object>
 <p></p>
 
-<h1 id="resnet18_static_naive">resnet18 static naive</h1>
-<object data="resnet18_static_naive.svg" type="image/svg+xml"></object>
+<h1 id="resnet18_static_mip">resnet18 static mip</h1>
+<object data="resnet18_static_mip.svg" type="image/svg+xml"></object>
 <p></p>
 
-<h1 id="resnet18_static_static_mip">resnet18 static static mip</h1>
-<object data="resnet18_static_static_mip.svg" type="image/svg+xml"></object>
+<h1 id="resnet18_static_naive">resnet18 static naive</h1>
+<object data="resnet18_static_naive.svg" type="image/svg+xml"></object>
 <p></p>
 
 <h1 id="resnet34_profiled_greedy_by_breadth">resnet34 profiled greedy by breadth</h1>
@@ -517,12 +515,12 @@
 <object data="resnet34_static_linear_scan.svg" type="image/svg+xml"></object>
 <p></p>
 
-<h1 id="resnet34_static_naive">resnet34 static naive</h1>
-<object data="resnet34_static_naive.svg" type="image/svg+xml"></object>
+<h1 id="resnet34_static_mip">resnet34 static mip</h1>
+<object data="resnet34_static_mip.svg" type="image/svg+xml"></object>
 <p></p>
 
-<h1 id="resnet34_static_static_mip">resnet34 static static mip</h1>
-<object data="resnet34_static_static_mip.svg" type="image/svg+xml"></object>
+<h1 id="resnet34_static_naive">resnet34 static naive</h1>
+<object data="resnet34_static_naive.svg" type="image/svg+xml"></object>
 <p></p>
 
 <h1 id="resnet50_profiled_greedy_by_breadth">resnet50 profiled greedy by breadth</h1>
@@ -577,12 +575,12 @@
 <object data="resnet50_static_linear_scan.svg" type="image/svg+xml"></object>
 <p></p>
 
-<h1 id="resnet50_static_naive">resnet50 static naive</h1>
-<object data="resnet50_static_naive.svg" type="image/svg+xml"></object>
+<h1 id="resnet50_static_mip">resnet50 static mip</h1>
+<object data="resnet50_static_mip.svg" type="image/svg+xml"></object>
 <p></p>
 
-<h1 id="resnet50_static_static_mip">resnet50 static static mip</h1>
-<object data="resnet50_static_static_mip.svg" type="image/svg+xml"></object>
+<h1 id="resnet50_static_naive">resnet50 static naive</h1>
+<object data="resnet50_static_naive.svg" type="image/svg+xml"></object>
 <p></p>
 
 <h1 id="small_bert_profiled_greedy_by_breadth">small_bert profiled greedy by breadth</h1>
@@ -603,6 +601,10 @@
 
 <h1 id="small_bert_profiled_greedy_by_size_with_smallest_gap">small_bert profiled greedy by size with smallest gap</h1>
 <object data="small_bert_profiled_greedy_by_size_with_smallest_gap.svg" type="image/svg+xml"></object>
+<p></p>
+
+<h1 id="small_bert_profiled_mip">small_bert profiled mip</h1>
+<object data="small_bert_profiled_mip.svg" type="image/svg+xml"></object>
 <p></p>
 
 <h1 id="small_bert_profiled_naive">small_bert profiled naive</h1>
@@ -631,6 +633,10 @@
 
 <h1 id="small_bert_static_linear_scan">small_bert static linear scan</h1>
 <object data="small_bert_static_linear_scan.svg" type="image/svg+xml"></object>
+<p></p>
+
+<h1 id="small_bert_static_mip">small_bert static mip</h1>
+<object data="small_bert_static_mip.svg" type="image/svg+xml"></object>
 <p></p>
 
 <h1 id="small_bert_static_naive">small_bert static naive</h1>
@@ -689,12 +695,12 @@
 <object data="unet_static_linear_scan.svg" type="image/svg+xml"></object>
 <p></p>
 
-<h1 id="unet_static_naive">unet static naive</h1>
-<object data="unet_static_naive.svg" type="image/svg+xml"></object>
+<h1 id="unet_static_mip">unet static mip</h1>
+<object data="unet_static_mip.svg" type="image/svg+xml"></object>
 <p></p>
 
-<h1 id="unet_static_static_mip">unet static static mip</h1>
-<object data="unet_static_static_mip.svg" type="image/svg+xml"></object>
+<h1 id="unet_static_naive">unet static naive</h1>
+<object data="unet_static_naive.svg" type="image/svg+xml"></object>
 <p></p>
 
 <html>
