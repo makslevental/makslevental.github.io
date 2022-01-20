@@ -39,6 +39,12 @@
 
 # FPGAs/HLS
 
+## Xilinx Runtime Library (XRT)
+
+easy way to talk to FPGA?
+
+https://www.xilinx.com/products/design-tools/vitis/xrt.html
+
 ## NiteFury and Litefury: Xilinx FPGA development board kit in M.2 form factor
 something something anush told me about it
 
