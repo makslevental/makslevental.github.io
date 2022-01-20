@@ -39,6 +39,12 @@
 
 # FPGAs/HLS
 
+## pytorch-vitis-strided-complex
+
+vitis kernels for pytorch (associated with fpga dispatchkey). claims to have a way to talk to device and host?
+
+https://gitlab.com/pytorch-complex/vitis_kernels
+
 ## Xilinx Runtime Library (XRT)
 
 easy way to talk to FPGA?
