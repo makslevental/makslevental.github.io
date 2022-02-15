@@ -13,7 +13,8 @@ If you want to deploy some logic to a FPGA and talk to that logic over PCIE, *an
 
 ![Untitled](/images/matmul_on_fpga_over_pcie/Untitled.png)
 
-One thing that made figuring this out challenging is that while there’s an abundance of guides that employ the Zynq platform (including the adjacent ARM core functioning as the processor system), there are almost none for that discuss accomplishing the goal using other boards/chips/configurations.
+One thing that made figuring this out challenging is that while there’s an abundance of guides that employ the Zynq platform (including the adjacent ARM core functioning as the processor system), there are almost none that discuss accomplishing the goal using other boards/chips/configurations.
+
 <!--more-->
 
 # Disclaimer
