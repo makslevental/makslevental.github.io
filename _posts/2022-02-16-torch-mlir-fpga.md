@@ -353,7 +353,7 @@ I also annotated `forward` with `__attribute__((used)) void forward` just in cas
 @llvm.used = appending global [1 x i8*] [i8* bitcast (void ([1 x [1 x [8 x [8 x float]]]]*, [1 x [1 x [6 x [6 x float]]]]*)* @_Z7forwardPA1_A8_A8_fPA1_A6_A6_f to i8*)], section "llvm.metadata"
 ```
 
-You’ll have to experiment with how much you pull from the bottom disassembled forward (i.e., which `!9` that are referenced).
+You’ll have to experiment with how much you pull from the bottom of disassembled `forward` (i.e., `!9` and the rest that are referenced).
 
 ## Array Decay
 
@@ -373,8 +373,8 @@ void forward(float (*) [1][8][8], float (*) [1][6][6])
 
 ```cpp
 %arraydecay = getelementptr inbounds [1 x [1 x [8 x [8 x float]]]], [1 x [1 x [8 x [8 x float]]]]* %l_A, i32 0, i32 0, !dbg !1957
-  %arraydecay9 = getelementptr inbounds [1 x [1 x [6 x [6 x float]]]], [1 x [1 x [6 x [6 x float]]]]* %l_C, i32 0, i32 0, !dbg !1958
-  call void @_Z7forwardPA1_A8_A8_fPA1_A6_A6_f([1 x [8 x [8 x float]]]* %arraydecay, [1 x [6 x [6 x float]]]* %arraydecay9), !dbg !1959
+%arraydecay9 = getelementptr inbounds [1 x [1 x [6 x [6 x float]]]], [1 x [1 x [6 x [6 x float]]]]* %l_C, i32 0, i32 0, !dbg !1958
+call void @_Z7forwardPA1_A8_A8_fPA1_A6_A6_f([1 x [8 x [8 x float]]]* %arraydecay, [1 x [6 x [6 x float]]]* %arraydecay9), !dbg !1959
 ```
 
 (with maybe a bitcast).
@@ -416,27 +416,27 @@ DATA_BYTES = np.dtype(DATA_TYPE).itemsize
 MAT_A = np.arange(0, NUM_EL_MATRIX, dtype=DATA_TYPE).reshape(MATRIX_DIM, MATRIX_DIM)
 
 async def to_device():
-    xdma_axis_wr_data = os.open("/dev/xdma0_h2c_0", os.O_WRONLY)
+  xdma_axis_wr_data = os.open("/dev/xdma0_h2c_0", os.O_WRONLY)
 
-    print(f"{MAT_A=}")
+  print(f"{MAT_A=}")
 
-    buffer = MAT_A
-    os.write(xdma_axis_wr_data, buffer.tobytes())
+  buffer = MAT_A
+  os.write(xdma_axis_wr_data, buffer.tobytes())
 
 async def from_device():
-    xdma_axis_rd_data = os.open("/dev/xdma0_c2h_0", os.O_RDONLY)
+  xdma_axis_rd_data = os.open("/dev/xdma0_c2h_0", os.O_RDONLY)
 
-    buffer_size = 6 * 6 * DATA_BYTES
-    data = os.read(xdma_axis_rd_data, buffer_size)
-    output = np.frombuffer(data, dtype=DATA_TYPE).reshape(6, 6)
-    print(f"{output=}")
-    # why am i getting 48 bytes left in the stream?
-    print(os.read(xdma_axis_rd_data, 48))
+  buffer_size = 6 * 6 * DATA_BYTES
+  data = os.read(xdma_axis_rd_data, buffer_size)
+  output = np.frombuffer(data, dtype=DATA_TYPE).reshape(6, 6)
+  print(f"{output=}")
+  # why am i getting 48 bytes left in the stream?
+  print(os.read(xdma_axis_rd_data, 48))
 
 async def conv():
-    # don't flip the order!
-    await to_device()
-    await from_device()
+  # don't flip the order!
+  await to_device()
+  await from_device()
 
 asyncio.run(conv())
 ```
