@@ -72,22 +72,22 @@ from torch_mlir.dialects.torch.importer.jit_ir import ModuleBuilder, ClassAnnota
 from torch_mlir_e2e_test.linalg_on_tensors_backends.refbackend import RefBackendInvoker
 
 def make_layer(test_module, annotations):
-    class_annotator = ClassAnnotator()
-    recursivescriptmodule = torch.jit.script(test_module)
-    class_annotator.exportNone(recursivescriptmodule._c._type())
-    class_annotator.exportPath(recursivescriptmodule._c._type(), ["forward"])
-    class_annotator.annotateArgs(
-        recursivescriptmodule._c._type(), ["forward"], annotations
-    )
-    
-    return recursivescriptmodule._c, class_annotator
+  class_annotator = ClassAnnotator()
+  recursivescriptmodule = torch.jit.script(test_module)
+  class_annotator.exportNone(recursivescriptmodule._c._type())
+  class_annotator.exportPath(recursivescriptmodule._c._type(), ["forward"])
+  class_annotator.annotateArgs(
+    recursivescriptmodule._c._type(), ["forward"], annotations
+  )
+  
+  return recursivescriptmodule._c, class_annotator
 
 layer = make_layer(
-    conv,
-    [
-        None,
-        ([1, 1, 8, 8], torch.float32, True),
-    ],
+  conv,
+  [
+    None,
+    ([1, 1, 8, 8], torch.float32, True),
+  ],
 )
 mb = ModuleBuilder()
 mb.import_module(*layer)
@@ -99,14 +99,14 @@ All of this annotation is necessary so that tensors (and eventually `memref`s ar
 PIPELINE = TORCH_PIPELINE + TO_LINALG_PIPELINE + BUFFERIZATION_PIPELINE + LOWERING_PIPELINE
 
 with mb.module.context:
-        mb.set_multithreading(False)
-        pm = PassManager.parse(",".join(PIPELINE))
-        pm.run(mb.module)
+  mb.set_multithreading(False)
+  pm = PassManager.parse(",".join(PIPELINE))
+  pm.run(mb.module)
 
-    asm_for_error_report = mb.module.operation.get_asm(
-        large_elements_limit=100000, enable_debug_info=False
-		)
-    open("conv.affine.mlir", "w").write(asm_for_error_report)
+  asm_for_error_report = mb.module.operation.get_asm(
+      large_elements_limit=100000, enable_debug_info=False
+  )
+  open("conv.affine.mlir", "w").write(asm_for_error_report)
 ```
 
 where the pipeline definitions can be found [here](https://github.com/makslevental/torch-mlir/blob/d183103de64036674e8d30cb696e83edd086394e/hls/python/poc.py#L78-L150). Note that some of those passes are my own concoctions (e.g., `torch-hls-linalg-bufferize` and `torch-hls-drop-public-return`) so you’re going to need to either cherry-pick or build my fork of Torch-MLIR.
@@ -169,14 +169,14 @@ The rest of the lowering we’ll do outside of the context of Torch-MLIR. First 
 
 ```bash
 mlir-opt \
-	-lower-affine \
-	-convert-scf-to-std \
-	-convert-memref-to-llvm \
-	-convert-arith-to-llvm \
-	-convert-std-to-llvm='use-bare-ptr-memref-call-conv=1' \
-	-reconcile-unrealized-casts \
-   < conv.affine.mlir \
-	 > conv.llvm.mlir
+-lower-affine \
+-convert-scf-to-std \
+-convert-memref-to-llvm \
+-convert-arith-to-llvm \
+-convert-std-to-llvm='use-bare-ptr-memref-call-conv=1' \
+-reconcile-unrealized-casts \
+< conv.affine.mlir \
+> conv.llvm.mlir
 ```
 
 and then `mlir-translate` to get actual LLVM IR:
@@ -192,18 +192,18 @@ Finally, the last step before FPGA land, is to massage the LLVM IR into a form t
 
 ```bash
 opt conv.ll \
-  -S \
-  -enable-new-pm=0 \
-  -load "VhlsLLVMRewriter.so" \
-  -mem2arr \
-  -strip-debug \
-  -instcombine \
-  -xlnmath \
-  -xlnname \
-  -strip-attr \
-  -xlnunroll \
-  -xlnarraypartition \
-  > conv.opt.vitis.ll
+-S \
+-enable-new-pm=0 \
+-load "VhlsLLVMRewriter.so" \
+-mem2arr \
+-strip-debug \
+-instcombine \
+-xlnmath \
+-xlnname \
+-strip-attr \
+-xlnunroll \
+-xlnarraypartition \
+> conv.opt.vitis.ll
 ```
 
 Two things to note: 
