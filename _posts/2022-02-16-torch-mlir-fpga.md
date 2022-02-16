@@ -9,9 +9,15 @@ title: torch.nn.Conv2d on FPGA through MLIR and Xilinx Vitis HLS
 
 Welcome to my oddysey in trying go from high-level (PyTorch) to low-level (FPGA). Grab a cup of coffee because this is going to take a while...
 
-If you just want to see code, it’s mostly [here](https://github.com/makslevental/torch-mlir/tree/hls/hls).
+# TL;DR
+
+If you want to deploy PyTorch (at least a `Conv2d` layer) to FPGA you can do it by torturing yourself and Vitis HLS:
+
+![Untitled](/images/torch_mlir_fpga/Untitled.png)
 
 <!--more-->
+
+If you just want to see code, it’s mostly [here](https://github.com/makslevental/torch-mlir/tree/hls/hls).
 
 # PyTorch
 
