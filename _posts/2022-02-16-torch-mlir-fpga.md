@@ -395,7 +395,7 @@ when you copy+paste into `conv.opt.vitis.ll`.
 
 ## Synthesis
 
-After jumping through all of those hoops you should be able to synthesize and implement successfully. You can then create and IP core (using `config_export -format ip_catalog -rtl  verilog` and `export_design -rtl verilog -format ip_catalog`) and use that IP core in the same way as I did for MatMul (i.e., with AXI Stream Width Converters and etc). 
+After jumping through all of those hoops you should be able to synthesize and implement successfully. You can then create an IP core (using `config_export -format ip_catalog -rtl  verilog` and `export_design -rtl verilog -format ip_catalog`) and use that IP core in the same way as I did for [MatMul](https://makslevental.github.io/Matmul-on-FPGA-PCIE/) (i.e., with AXI Stream Width Converters and etc). 
 
 If you get a synthesis error in Vivado about `floating point v7_1_12.v` missing then you might be using an outdated version of `vitis_hls` (i.e., Vitis HLS); this issue cleared up for me going from `2021.1` to `2021.2`.
 
