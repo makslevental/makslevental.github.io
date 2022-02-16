@@ -401,7 +401,7 @@ If you get a synthesis error in Vivado about `floating point v7_1_12.v` missing 
 
 # Finally!
 
-Using a script similar to the `[matmul.py](http://matmul.py)` script
+Using a script similar to the `[matmul.py](https://gist.github.com/makslevental/69107d0e566040b24bc317354b6372d9)` script
 
 ```python
 import os
