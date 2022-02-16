@@ -309,7 +309,7 @@ Key thing to notice here is the forward declaration for `forward`; this is `conv
 # Problems and Solutions
 
 **This does not work**. The reason is that the `set ::LLVM_CUSTOM_CMD` that’s run in the hook completely ignores all prior work done by clang. So actually what results from making this substitution is Vitis complaining that you don’t have a top-level function because the only thing it sees is the llvm bitcode produced from `conv.opt.vitis.ll` (because, recall, we did not annotate `conv.forward` as the top-level).
-Come with me on a journey of the most insane debugging I'v ever done.
+Regardless, come with me on a journey of the most insane debugging I'v ever done.
 
 
 ## Linking
