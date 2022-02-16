@@ -441,7 +441,7 @@ async def conv():
 asyncio.run(conv())
 ```
 
-As the note says, after reading from the FPGA there seem to be 48 bytes left that need to cleared out. I have no clue why it’s 48 (i.e., 12 floats) but that’s a battle for another day. 
+As the note in `from_device` says, after reading from the FPGA there seem to be 48 bytes left that need to cleared out. I have no clue why it’s 48 (i.e., 12 floats) but that’s a battle for another day. 
 
 Pics or didn’t happen:
 
