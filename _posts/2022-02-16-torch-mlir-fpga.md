@@ -339,7 +339,7 @@ Note that you’re reading and writing to the `.autopilot/db/` directory (talk a
 
 ## Name Mangling
 
-**This almost works**. The error you will get now is that `wrapper.cpp` is trying to call an undefined `forward` (all this and more at `.autopilot/db/autopilot.flow.log`). What’s happening is that, while `llvm-link` is successfully linking `conv.opt.vitis.ll` with `a.g.ld.4.m2.bc`, it is not at any point name mangling `forward`, while the reference to `forward` in `wrapper` *is name mangled*. I.e., references look like `@_Z7forwardPA1_A8_A8_fPA1_A6_A6_f`. I have not figured out how to make this happen automatically, so what I did was write a stub in Vitis HLS (i.e., the GUI) with the right signature, have Vitis HLS run synthesis, and then `llvm-dis` the results and copy+pasting into `conv.opt.vitis.ll`. In addition I grabbed the attributes that Vitis HLS adds automatically; the relevant bits are
+**This almost works**. The error you will get now is that `wrapper.cpp` is trying to call an undefined `forward` (all this and more at `.autopilot/db/autopilot.flow.log`). What’s happening is that, while `llvm-link` is successfully linking `conv.opt.vitis.ll` with `a.g.ld.4.m2.bc`, it is not at any point name mangling `forward`, while the reference to `forward` in `wrapper` *is name mangled*. I.e., references look like `@_Z7forwardPA1_A8_A8_fPA1_A6_A6_f`. I have not figured out how to make this happen automatically, so what I did was write a stub in Vitis HLS (i.e., the GUI) with the right signature, have Vitis HLS run synthesis, and then `llvm-dis` the results and copy+paste into `conv.opt.vitis.ll`. In addition I grabbed the attributes that Vitis HLS adds automatically; the relevant bits are
 
 ```cpp
 define void @_Z7forwardPA1_A8_A8_fPA1_A6_A6_f([1 x [8 x [8 x float]]]*, [1 x [6 x [6 x float]]]*) #0
@@ -347,7 +347,7 @@ define void @_Z7forwardPA1_A8_A8_fPA1_A6_A6_f([1 x [8 x [8 x float]]]*, [1 x [6 
 !7 = distinct !DISubprogram(name: "forward", linkageName: "_Z7forwardPA1_A8_A8_fPA1_A6_A6_f", scope: !8, file: !8, line: 3, type: !9, scopeLine: 3, flags: DIFlagPrototyped, spFlags: DISPFlagDefinition, unit: !0, retainedNodes: !2)
 ```
 
-I also annotated `forward` with `attribute((used)) void forward` just in case, which produces
+I also annotated `forward` with `__attribute__((used)) void forward` just in case, which produces
 
 ```cpp
 @llvm.used = appending global [1 x i8*] [i8* bitcast (void ([1 x [1 x [8 x [8 x float]]]]*, [1 x [1 x [6 x [6 x float]]]]*)* @_Z7forwardPA1_A8_A8_fPA1_A6_A6_f to i8*)], section "llvm.metadata"
