@@ -430,7 +430,9 @@ async def from_device():
   data = os.read(xdma_axis_rd_data, buffer_size)
   output = np.frombuffer(data, dtype=DATA_TYPE).reshape(6, 6)
   print(f"{output=}")
-  # why am i getting 48 bytes left in the stream?
+  # 48 (12 floats) bytes left in the stream because we read 16 floats
+  # at a time, and 36 = 16 + 16 + 4
+  # ie the last read has 16 - 4 = 12 unfilled
   print(os.read(xdma_axis_rd_data, 48))
 
 async def conv():

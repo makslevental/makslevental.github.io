@@ -9,3 +9,4 @@ gem "jekyll-sitemap"
 gem "jekyll-theme-minimal"
 gem "jekyll-feed"
 gem "kramdown-parser-gfm"
+gem 'jemoji'
