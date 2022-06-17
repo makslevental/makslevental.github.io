@@ -214,7 +214,7 @@ note: see current operation: %641 = "torch.aten.to.dtype"(%640, %97, %112, %112,
 
 which `torch-mlir-opt` tells is located at
 
-```pythong
+```python
 modeling_opt.py:134:0: error: failed to legalize operation 'torch.aten.view' that was explicitly marked illegal
 modeling_opt.py:134:0: note: see current operation: %809 = "torch.aten.view"(%807, %808) : (!torch.tensor<[1,7,768],f32>, !torch.list<int>) -> !torch.tensor<[1,7,12,64],f32>
 ```
