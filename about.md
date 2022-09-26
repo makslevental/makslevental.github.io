@@ -26,8 +26,7 @@ Before CS, I got my BS in Pure Math at Florida State University and then taught 
 
 ## CV/Resume
 
-<embed src="https://drive.google.com/viewerng/
-viewer?embedded=true&url=https://github.com/makslevental/resume/raw/master/maksim_levental_resume.pdf" width="1000" height="1000">
+<iframe src="https://github.com/makslevental/resume/raw/master/maksim_levental_resume.pdf" width="1000" height="1000">
 
 ## Calendar
 
