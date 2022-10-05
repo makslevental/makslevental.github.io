@@ -7,7 +7,6 @@ excerpt_separator: <!--more-->
 title: MemRef dependence checks in MLIR
 ---
 
- <!--more-->
 
 # Setting
 
@@ -38,6 +37,8 @@ func.func @kernel() {
   return
 }
 ```
+ 
+<!--more-->
 
 Note that a more succinct IR is
 
