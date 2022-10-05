@@ -271,7 +271,7 @@ stabilizer
 \begin_inset Formula 
 \begin{align*}
 g\ket{0}_{k} & =+1\ket{0}_{k}\\
-g\ket{1}_{k} & =+1\ket{1}_{k}
+g\ket{1}_{k} & =-1\ket{1}_{k}
 \end{align*}
 
 \end_inset
