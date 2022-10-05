@@ -295,7 +295,7 @@ A key property of the stabilizer group is that it is abelian
 , i.e., all of the members commute with each others.
  This enables us to simultaneously measure
 \begin_inset Foot
-status collapsed
+status open
 
 \begin_layout Plain Layout
 If operators 
@@ -551,8 +551,8 @@ but intuitively you can think of it like this: for a
 \begin_inset Formula $g$
 \end_inset
 
- and thereby cuts out the possibilities by half and hence after constraining
- with 
+ and thereby cuts the possibilities by half.
+ Hence after constraining with 
 \begin_inset Formula $l$
 \end_inset
 
@@ -804,7 +804,7 @@ Facts:
 
  are all Hermitian
 \begin_inset Foot
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \begin_inset Formula $H$
@@ -867,7 +867,7 @@ Each of them commutes with all of the others
 \begin_inset Formula $B_{p}$
 \end_inset
 
- commutes with 
+ and 
 \begin_inset Formula $B_{p'}$
 \end_inset
 
@@ -879,7 +879,15 @@ Each of them commutes with all of the others
 \begin_inset Formula $X_{j'}$
 \end_inset
 
+ (and thus 
+\begin_inset Formula $B_{p}$
+\end_inset
 
+ and 
+\begin_inset Formula $B_{p'}$
+\end_inset
+
+ commute)
 \end_layout
 
 \begin_layout Enumerate
@@ -909,83 +917,7 @@ Therefore, we can measure all the
 \begin_inset Formula $B_{p}$
 \end_inset
 
- simultaneously
-\begin_inset Foot
-status collapsed
-
-\begin_layout Plain Layout
-If operators 
-\begin_inset Formula $F$
-\end_inset
-
- and 
-\begin_inset Formula $G$
-\end_inset
-
- commute, then you can come up with a 
-\begin_inset Quotes eld
-\end_inset
-
-complete
-\begin_inset Quotes erd
-\end_inset
-
- set of basis states 
-\begin_inset Formula $\ket{f_{n}g_{n}}$
-\end_inset
-
- that are eigenstates of both 
-\begin_inset Formula $F$
-\end_inset
-
- and 
-\begin_inset Formula $G$
-\end_inset
-
-, and thus express any state of the quantum system as 
-\begin_inset Formula 
-\[
-\ket{\Psi}=\sum_{n}\alpha_{n}\ket{f_{n}g_{n}}
-\]
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-Measuring 
-\begin_inset Formula $F$
-\end_inset
-
- you will get eigenstate 
-\begin_inset Formula $f_{m}$
-\end_inset
-
- with probability 
-\begin_inset Formula $\left|\alpha_{m}^{2}\right|$
-\end_inset
-
- and the system will be in eigenstate 
-\begin_inset Formula $\ket{f_{m}g_{m}}$
-\end_inset
-
- and similarly for 
-\begin_inset Formula $G$
-\end_inset
-
-.
- Thus, it doesn't matter which order you measure 
-\begin_inset Formula $F,G$
-\end_inset
-
- in, you will get a consistent result.
- This is the significance of commuting operators.
-\end_layout
-
-\end_inset
-
- and the ground-state energy of 
+ simultaneously and the ground-state energy of 
 \begin_inset Formula $H$
 \end_inset
 
@@ -1084,7 +1016,7 @@ reference "sec:The-stabilizer-formalism"
 \begin_inset Formula $-1$
 \end_inset
 
- will add a positive term to the sum in eqn.
+ will contribute a positive term to the sum in eqn.
  
 \begin_inset CommandInset ref
 LatexCommand eqref
@@ -1110,7 +1042,7 @@ constraints
 \end_inset
 
 .
- All told the dimension of the code space is 
+ All told the dimension of the code space is four 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "introtoriccode"
@@ -1127,7 +1059,7 @@ Toric Codes
 
 \begin_layout Standard
 But what do the possible legal codes look like? Note (by the just preceding
- discussion on satisfying constraints), this is the same thing as asking
+ discussion on satisfying constraints), this is the same thing as considering
  what are the ground-states (lowest energy states) of the system.
  First, as a kind of warm up, consider only the 
 \begin_inset Formula $A_{v}$
@@ -1284,7 +1216,7 @@ d qubits but also loops of flipped qubits).
 degeneracy
 \emph default
 , when lots of distinct physical states are measured to have the same energy.
- In particular (you'll see why in a second), if we only measure 
+ In particular, if we only measure 
 \begin_inset Formula $A_{v}$
 \end_inset
 
@@ -1299,8 +1231,8 @@ Recall that what we're trying to accomplish in constructing error correcting
 \begin_inset Formula $\frac{1}{2}$
 \end_inset
 
- particles) can be in that can be distinguished between using non-destructive
- measurements (in this case, using stabilizers).
+ particles) that can be distinguished between using non-destructive measurements
+ (in this case, using stabilizers).
  Therefore such degeneracy is problematic.
  The resolution is to apply the 
 \begin_inset Formula $B_{p}$
@@ -1326,7 +1258,8 @@ reference "spinflipswithbp"
 
 \end_inset
 
-, it seems like not much, but in fact we can use the 
+, it seems like not much, but in fact we've gained a useful ability: we
+ can use the 
 \begin_inset Formula $B_{p}$
 \end_inset
 
@@ -1334,7 +1267,7 @@ reference "spinflipswithbp"
 \begin_inset Formula $B_{p}$
 \end_inset
 
- adjacent to the interior edge of the loop (see figure 
+ operators adjacent to the interior edge of the loop (see figure 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "spinflipswithbp-1"
@@ -1496,6 +1429,8 @@ literal "false"
 \end_inset
 
  of the stabilizer group (which we earlier computed to be 4).
+ Note, that the distance between codes is the width or height of the lattice
+ (whichever is larger).
 \begin_inset Float figure
 wide false
 sideways false
