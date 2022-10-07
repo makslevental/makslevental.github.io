@@ -10,6 +10,13 @@
 \usetikzlibrary{decorations.pathmorphing}
 \usepackage{braket}
 \usepackage[colorlinks,citecolor=red,urlcolor=blue,bookmarks=false,hypertexnames=true]{hyperref} 
+
+\setlength{\unitlength}{1em}
+\newcommand\like[1]{\begin{picture}(1,1)
+\ifnum0=#1\put(.5,.35){\circle{1}}\else
+\ifnum10=#1\put(.5,.35){\circle*{1}}\else
+\put(.5,.35){\circle{1}}\put(.5,.35){\circle*{.#1}}
+\fi\fi\end{picture}}
 \end_preamble
 \use_default_options true
 \maintain_unincluded_children false
@@ -107,195 +114,216 @@ name "sec:The-stabilizer-formalism"
 
 \end_layout
 
-\begin_layout Subsection
-\begin_inset Quotes eld
-\end_inset
-
-Minimal Working Example
-\begin_inset Quotes erd
+\begin_layout Standard
+\begin_inset FormulaMacro
+\newcommand{\Z}{\hat{Z}}
 \end_inset
 
 
 \end_layout
 
 \begin_layout Standard
-Consider a two bit Shor code (i.e., two qubit system) and the standard 
-\begin_inset Formula $\sigma_{z}^{i}$
+\begin_inset FormulaMacro
+\newcommand{\X}{\hat{X}}
 \end_inset
 
- Pauli operators, where 
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset FormulaMacro
+\newcommand{\0}{\ket{0}}
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset FormulaMacro
+\newcommand{\1}{\ket{1}}
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset FormulaMacro
+\newcommand{\pdag}{\psi^{\dagger}}
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset FormulaMacro
+\newcommand{\p}{\psi}
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+The Stabilizer Code 
+\begin_inset Quotes eld
+\end_inset
+
+vibe
+\begin_inset Quotes erd
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:The-Stabilizer-Code"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Let 
+\begin_inset Formula $\hat{X}:=\hat{\sigma}_{x}$
+\end_inset
+
+, 
+\begin_inset Formula $\hat{Z}:=\hat{\sigma}_{z}$
+\end_inset
+
+.
+ Errors in QC occur from 
+\begin_inset Quotes eld
+\end_inset
+
+random and unpredictable [appearances] of 
+\begin_inset Formula $\X$
+\end_inset
+
+, 
+\begin_inset Formula $\Z$
+\end_inset
+
+ during the evaluation of a computation.
+ They can be detected by repeated measurements of 
+\begin_inset Formula $\hat{X}$
+\end_inset
+
+,
+\begin_inset Formula $\hat{Z}$
+\end_inset
+
+ but since 
+\begin_inset Formula $\left[\hat{X},\hat{Z}\right]\neq0$
+\end_inset
+
+, such repeated measurements (by causing projections on to the respective
+ eigenstates) destroy the quantum state.
+ For example, a 
+\begin_inset Formula $\Z$
+\end_inset
+
+ measurement 
+\begin_inset Formula $M_{\Z}$
+\end_inset
+
+ on a qubit with state 
+\begin_inset Formula $\psi$
+\end_inset
+
+ (randomly) will project that qubit onto 
+\begin_inset Formula $\0$
+\end_inset
+
+ or 
+\begin_inset Formula $\1$
+\end_inset
+
+ with corresponding (measured) eigenvalues 
+\begin_inset Formula $+1$
+\end_inset
+
+ or -1 (respectively), leading to a complete loss of the state's amplitude
+ and phase
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+\begin_inset Quotes eld
+\end_inset
+
+Wave function collapse
+\begin_inset Quotes erd
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+.
+ A subsequent measurement 
+\begin_inset Formula $M_{\X}$
+\end_inset
+
+ of 
+\begin_inset Formula $\X$
+\end_inset
+
+ will then project onto the eigenstate 
+\begin_inset Formula $\left(\0+\1\right)/\sqrt{2}$
+\end_inset
+
+ or the eigenstate 
+\begin_inset Formula $\left(\0-\1\right)/\sqrt{2}$
+\end_inset
+
+ (with corresponding measured eigenvalues 
+\begin_inset Formula $+1$
+\end_inset
+
+ or 
+\begin_inset Formula $-1$
+\end_inset
+
+).
+ Call this the 
+\series bold
+projective measurement problem
+\series default
+.
+\end_layout
+
+\begin_layout Standard
+The projective measurement problem can be avoided by measuring multiple
+ qubits; consider a two qubit system, with qubits 
+\begin_inset Formula $a,b$
+\end_inset
+
+, and the standard 
+\begin_inset Formula $\X_{i},\Z_{i}$
+\end_inset
+
+ where 
 \begin_inset Formula $i$
 \end_inset
 
  indicates which qubit the operator will act on.
- What are the outcomes of applying 
-\begin_inset Formula $\sigma_{z}^{1}\sigma_{z}^{2}$
-\end_inset
-
- to the possible codes?
-\begin_inset Formula 
-\begin{align*}
-\sigma_{z}^{1}\sigma_{z}^{2}\ket{00} & =(+1\times+1)\ket{00}=\ket{00}\\
-\sigma_{z}^{1}\sigma_{z}^{2}\ket{11} & =(-1\times-1)\ket{11}=\ket{11}\\
-\sigma_{z}^{1}\sigma_{z}^{2}\ket{10} & =(-1\times+1)\ket{10}=-\ket{10}\\
-\sigma_{z}^{1}\sigma_{z}^{2}\ket{01} & =(+1\times-1)\ket{01}=-\ket{01}
-\end{align*}
-
-\end_inset
-
-Thus, we observe that 
-\begin_inset Formula $\sigma_{z}^{1}\sigma_{z}^{2}$
-\end_inset
-
- can pick up 
-\begin_inset Quotes eld
-\end_inset
-
-bit flips
-\begin_inset Quotes erd
-\end_inset
-
- in the code.
- The same approach (though using 
-\begin_inset Formula $\sigma_{x}^{i}$
-\end_inset
-
- Pauli operators) can also be used to pick up 
-\begin_inset Quotes eld
-\end_inset
-
-phase
-\begin_inset Quotes erd
-\end_inset
-
- differences between codes; for example, let
-\begin_inset Formula 
-\begin{align*}
-\psi & :=\ket{000}+\ket{111}\\
-\phi & :=\ket{000}-\ket{111}
-\end{align*}
-
-\end_inset
-
-Then
-\begin_inset Formula 
-\begin{align*}
-\sigma_{x}^{1}\sigma_{x}^{2}\sigma_{x}^{3}\psi & =\psi\\
-\sigma_{x}^{1}\sigma_{x}^{2}\sigma_{x}^{3}\phi & =-\phi
-\end{align*}
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-In the above two examples, the operators 
-\begin_inset Formula $\sigma_{z}^{1}\sigma_{z}^{2}$
+ Construct the two-qubit operators 
+\begin_inset Formula $\X_{a}\X_{b}$
 \end_inset
 
  and 
-\begin_inset Formula $\sigma_{x}^{1}\sigma_{x}^{2}\sigma_{x}^{3}$
+\begin_inset Formula $\Z_{a}\Z_{b}$
 \end_inset
 
- are said to 
-\emph on
-stabilize 
-\emph default
-the respective logical codes, i.e., the states corresponding to the encoding
- of logical 0 (
-\begin_inset Formula $\ket{00}$
+; these operators commute since 
+\begin_inset Formula $\left[\X_{a},\Z_{b}\right]=0$
 \end_inset
 
-,
-\begin_inset Formula $\ket{000}$
-\end_inset
-
-) or logical 1 (
-\begin_inset Formula $\ket{11}$
-\end_inset
-
-,
-\begin_inset Formula $\ket{111}$
-\end_inset
-
-) are eigenstates with eigenvalue 
-\begin_inset Formula $+1$
-\end_inset
-
-.
- Note, these ideas generalize to larger and larger Shor codes
-\begin_inset CommandInset citation
-LatexCommand cite
-key "https://doi.org/10.48550/arxiv.quant-ph/9705052"
-literal "false"
-
-\end_inset
-
- but in non-obvious ways (in terms of exactly which Pauli operators should
- be applied).
-\end_layout
-
-\begin_layout Subsection
-Stabilizer subgroup
-\end_layout
-
-\begin_layout Standard
-Generalizing these examples, we're looking for members of a subgroup within
- the Pauli group 
-\begin_inset Formula $G_{k}$
-\end_inset
-
- (on 
-\begin_inset Formula $k$
-\end_inset
-
- qubits) called the 
-\emph on
-stabilizer
-\emph default
- group (
-\begin_inset Formula $S_{k}$
-\end_inset
-
-).
- The defining property of 
-\begin_inset Formula $S_{k}$
-\end_inset
-
- is that for any 
-\begin_inset Formula $g\in S_{k}\subset G_{k}$
-\end_inset
-
-
-\begin_inset Formula 
-\begin{align*}
-g\ket{0}_{k} & =+1\ket{0}_{k}\\
-g\ket{1}_{k} & =-1\ket{1}_{k}
-\end{align*}
-
-\end_inset
-
-where the subscript 
-\begin_inset Formula $k$
-\end_inset
-
- indicates 
-\begin_inset Formula 
-\[
-\ket{0}_{k}:=\ket{\underbrace{00\cdots00}_{k}}
-\]
-
-\end_inset
-
-
-\series bold
-A key property of the stabilizer group is that it is abelian
-\series default
-, i.e., all of the members commute with each others.
- This enables us to simultaneously measure
+ (since they're applied to different qubits).
+ Thus, these operators can be measured simultaneously
 \begin_inset Foot
-status open
+status collapsed
 
 \begin_layout Plain Layout
 If operators 
@@ -350,15 +378,15 @@ Measuring
 \begin_inset Formula $\left|\alpha_{m}^{2}\right|$
 \end_inset
 
- and the system will be in eigenstate 
+ while leaving the system in eigenstate 
 \begin_inset Formula $\ket{f_{m}g_{m}}$
 \end_inset
 
- and similarly for 
+, and vice-versa for 
 \begin_inset Formula $G$
 \end_inset
 
-.
+ (i.e., you get the same result either way).
  Thus, it doesn't matter which order you measure 
 \begin_inset Formula $F,G$
 \end_inset
@@ -369,1004 +397,1199 @@ Measuring
 
 \end_inset
 
- all of the 
-\begin_inset Formula $g\in S_{k}$
+.
+ The possible outcomes of a measurement of both 
+\begin_inset Formula $\X_{a}\X_{b}$
+\end_inset
+
+ and 
+\begin_inset Formula $\Z_{a}\Z_{b}$
+\end_inset
+
+ appear in table 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eigenstates-two-ops"
+
+\end_inset
+
+.
+ 
+\begin_inset Float table
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="5" columns="3">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top" width="0pt">
+<column alignment="center" valignment="top" width="0pt">
+<column alignment="center" valignment="top" width="0pt">
+<row>
+<cell alignment="center" valignment="top" bottomline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\Z_{a}\Z_{b}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\X_{a}\X_{b}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\psi$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $+1$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $+1$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\left(\ket{00}+\ket{11}\right)/\sqrt{2}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $+1$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $-1$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\left(\ket{00}+\ket{11}\right)/\sqrt{2}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $-1$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $+1$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\left(\ket{01}+\ket{10}\right)/\sqrt{2}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $+1$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $+1$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\left(\ket{10}+\ket{01}\right)/\sqrt{2}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Eigenstates of the two-qubit operators 
+\begin_inset Formula $\X_{a}\X_{b}$
+\end_inset
+
+ and 
+\begin_inset Formula $\Z_{a}\Z_{b}$
 \end_inset
 
 .
 \end_layout
 
-\begin_layout Subsection
-The code space
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "eigenstates-two-ops"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
-Okay, but this description kind of 
+Consider the state 
+\begin_inset Formula $\psi=\left(\ket{00}+\ket{11}\right)/\sqrt{2}$
+\end_inset
+
+ and notice that an 
+\begin_inset Formula $\X_{b}$
+\end_inset
+
+ error (i.e., 
+\begin_inset Formula $\X$
+\end_inset
+
+ error on the second qubit) will transform 
+\begin_inset Formula $\psi$
+\end_inset
+
+ into 
+\begin_inset Formula $\left(\ket{01}+\ket{10}\right)/\sqrt{2}$
+\end_inset
+
+ 
+\emph on
+which is also an eigenstate of 
+\begin_inset Formula $\X_{a}\X_{b}\Z_{a}\Z_{b}$
+\end_inset
+
+ 
+\emph default
+but with eigenvalues 
+\begin_inset Formula $\left(-1,+1\right)$
+\end_inset
+
+.
+ That change - measurements
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+Don't forget: we only know anything about 
+\begin_inset Formula $\psi$
+\end_inset
+
+ through measurements.
+\end_layout
+
+\end_inset
+
+ of 
+\begin_inset Formula $\psi$
+\end_inset
+
+ (by giving 
+\emph on
+
+\begin_inset Formula $\X_{a}\X_{b}\Z_{a}\Z_{b}$
+\end_inset
+
+
+\emph default
+) giving eigenvalues 
+\begin_inset Formula $\left(-1,+1\right)$
+\end_inset
+
+ instead of 
+\begin_inset Formula $\left(+1,+1\right)$
+\end_inset
+
+ - reveals the error 
+\emph on
+without disturbing the wave function 
+\emph default
+(amplitude and phase) of 
+\begin_inset Formula $\psi$
+\end_inset
+
+.
+ Unfortunately, this error cannot be distinguished from a 
+\begin_inset Formula $\X_{a}$
+\end_inset
+
+, which yields the same final state and eigenvalues.
+ The point here is that 
+\series bold
+while errors can always be detected, they cannot always be uniquely identified
+ using only 
+\series default
+
+\begin_inset Formula $\X_{a}\X_{b}$
+\end_inset
+
+ 
+\series bold
+and 
+\series default
+
+\begin_inset Formula $\Z_{a}\Z_{b}$
+\end_inset
+
+.
+ A more complex scheme is necessary.
+ 
+\end_layout
+
+\begin_layout Standard
+The operators 
+\begin_inset Formula $\X_{a}\X_{b}$
+\end_inset
+
+ and 
+\begin_inset Formula $\Z_{a}\Z_{b}$
+\end_inset
+
+ are called 
+\series bold
+stabilizers
+\series default
+.
+
+\series bold
+ 
+\series default
+The core idea of stabilizer codes is repeated measurements of a complete
+ set of commuting stabilizers
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+Don't get hung up on complete and commuting - we'll come back to it.
+\end_layout
+
+\end_inset
+
+ puts a qubit system into a simultaneous and unique eigenstate of all of
+ them
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+Think about how solving a set of simultaneous equations gives you a unique
+ solution.
+\end_layout
+
+\end_inset
+
+.
+ Since you can measure (the observables corresponding to) the stabilizers
+ without perturbing the system
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+That's where the 
 \begin_inset Quotes eld
 \end_inset
 
-puts the cart before the horse
+stable
+\begin_inset Quotes erd
+\end_inset
+
+ in stabilizers comes from.
+\end_layout
+
+\end_inset
+
+, you can catch (some) errors when they occur (evident by transitions from
+ one eigenstate of the stabilizer to another).
+ When stabilizer codes are used, the system is put into a random starting
+ eigenstate of the stabilizers, a so-called 
+\series bold
+quiescent state
+\series default
+ of the system, by simultaneously measuring all stabilizers
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+Thus, the system doesn't necessarily start from the groundstate, at the
+ beginning of the quantum computation/quantum circuit.
+\end_layout
+
+\end_inset
+
+ and then measured repeatedly at regular intervals.
+\end_layout
+
+\begin_layout Section
+The Surface Code
+\end_layout
+
+\begin_layout Standard
+More complex stabilizer codes exist and are used; the following is a description
+ of such a code, called a 
+\series bold
+surface code
+\series default
+.
+ A surface code can be implemented using a two-dimensional array of real
+ (physical) qubits, as shown in figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "2dlattice-1-1"
+
+\end_inset
+
+.
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename fowler2darray.png
+	lyxscale 50
+	width 70text%
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "2dlattice-1-1"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename measureneighbors.png
+	lyxscale 50
+	width 20text%
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "2dlattice-1-2"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "2dlattice-1"
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+(a) A two-dimensional array implementing a surface code.
+ 
+\series bold
+Data qubits
+\series default
+ are open circles (
+\begin_inset Formula $\bigcirc$
+\end_inset
+
+), 
+\series bold
+measurement qubits
+\series default
+ are filled circles (
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+like{10}
+\end_layout
+
+\end_inset
+
+), with measure-
+\begin_inset Formula $\Z$
+\end_inset
+
+ qubits colored green and measure-
+\begin_inset Formula $\X$
+\end_inset
+
+ qubits colored yellow.
+ (b) Neighbor measurement sequence; note that the 
+\begin_inset Quotes eld
+\end_inset
+
+zig-zagging
+\begin_inset Quotes erd
+\end_inset
+
+ is important.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+The physical qubits are one of two types: 
+\series bold
+data qubits
+\series default
+, within which the computational quantum states are stored, and 
+\series bold
+measurement qubits
+\series default
+, which are used as stabilizers, but can also alter the state of the data
+ qubits, during, e.g., error correction.
+ There are two types of measurement qubits: 
+\series bold
+measure-
+\begin_inset Formula $\Z$
+\end_inset
+
+ 
+\series default
+qubits (measuring the 
+\begin_inset Formula $\Z$
+\end_inset
+
+ syndrome) and 
+\series bold
+measure-
+\begin_inset Formula $\X$
+\end_inset
+
+ 
+\series default
+qubits (measuring the 
+\begin_inset Formula $\X$
+\end_inset
+
+ syndrome).
+ Each data qubit is connected to two of each kind of measurement qubit (two
+ measure-
+\series bold
+
+\begin_inset Formula $\Z$
+\end_inset
+
+ 
+\series default
+qubits and two measure-
+\begin_inset Formula $\X$
+\end_inset
+
+ qubits).
+ Conversely, each measurement qubit is connected to four data qubits.
+ 
+\series bold
+Very important
+\series default
+: measure-
+\series bold
+
+\begin_inset Formula $\Z$
+\end_inset
+
+ 
+\series default
+qubit triggers a 
+\begin_inset Formula $\Z$
+\end_inset
+
+ measurement on each of its neighboring data qubits (
+\begin_inset Formula $\Z_{a}\Z_{b}\Z_{c}\Z_{d}$
+\end_inset
+
+ on its 
+\begin_inset Formula $a,b,c,d$
+\end_inset
+
+ neighbors) and likewise a measure-
+\series bold
+
+\begin_inset Formula $\X$
+\end_inset
+
+ 
+\series default
+qubit triggers a 
+\begin_inset Formula $\X$
+\end_inset
+
+ measurement on each of its neighboring data qubits (see figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "2dlattice-1-2"
+
+\end_inset
+
+).
+ Therefore, a measure-
+\series bold
+
+\begin_inset Formula $\Z$
+\end_inset
+
+ 
+\series default
+measures the stabilizer 
+\begin_inset Formula $\Z_{a}\Z_{b}\Z_{c}\Z_{d}$
+\end_inset
+
+ and measure-
+\series bold
+
+\begin_inset Formula $\X$
+\end_inset
+
+ 
+\series default
+measures the stabilizer 
+\begin_inset Formula $\X_{a}\X_{b}\X_{c}\X_{d}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Section
+Single Qubit Errors
+\end_layout
+
+\begin_layout Standard
+Recall that stabilizers codes are initially put into a quiescent state,
+ which thereafter remains unchanged except in the presence of errors.
+ Consider single-qubit 
+\begin_inset Formula $\X$
+\end_inset
+
+ spin/bit-flip errors or 
+\begin_inset Formula $\Z$
+\end_inset
+
+ phase-flip errors.
+ Such errors show up in the measurement outcomes of the stabilizers (as
+ discussed in section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:The-Stabilizer-Code"
+
+\end_inset
+
+).
+ For example
+\begin_inset Formula 
+\[
+\hat{K}:=\hat{I}_{a}+\epsilon\Z_{a}
+\]
+
+\end_inset
+
+ affecting data qubit 
+\begin_inset Formula $a$
+\end_inset
+
+.
+ This error transform the wavefunction 
+\begin_inset Formula $\psi$
+\end_inset
+
+
+\begin_inset Formula 
+\[
+K\psi\rightarrow\psi':=\left(\hat{I}_{a}+\epsilon\Z_{a}\right)\psi\equiv\psi+\epsilon\Z_{a}\psi
+\]
+
+\end_inset
+
+What this means is that, upon the next measurement of the neighboring 
+\begin_inset Formula $\Z_{a}\Z_{b}\Z_{c}\Z_{d}$
+\end_inset
+
+ and 
+\begin_inset Formula $\X_{a}\X_{b}\X_{c}\X_{d}$
+\end_inset
+
+ stabilizers , 
+\begin_inset Formula $\psi'$
+\end_inset
+
+ will either be projected
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+I.e., measured to be in.
+\end_layout
+
+\end_inset
+
+ back to the original 
+\begin_inset Formula $\psi$
+\end_inset
+
+ (if we're lucky
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+If 
+\begin_inset Formula $\epsilon$
+\end_inset
+
+ is very small, i.e., 
+\begin_inset Formula $\left|\epsilon\right|^{2}\ll1$
+\end_inset
+
+.
+\end_layout
+
+\end_inset
+
+), or it'll be projected to 
+\begin_inset Formula $\Z_{a}\psi$
+\end_inset
+
+ with probability 
+\begin_inset Formula $\left|\epsilon\right|^{2}$
+\end_inset
+
+.
+ Obviously in the first case, the measurement outcomes of the stabilizers
+ are the same as before the error.
+ On the otherhand, in the second case
+\begin_inset Formula 
+\[
+\X_{a}\X_{b}\X_{c}\X_{d}\left(\Z_{a}\psi\right)=-\Z_{a}\left(\X_{a}\X_{b}\X_{c}\X_{d}\psi\right)=-X_{abcd}\left(\Z_{a}\psi\right)
+\]
+
+\end_inset
+
+where 
+\begin_inset Formula $X_{abcd}$
+\end_inset
+
+ is the outcome of the measurement of 
+\begin_inset Formula $\X_{a}\X_{b}\X_{c}\X_{d}$
+\end_inset
+
+ (i.e., 
+\begin_inset Formula $X_{abcd}$
+\end_inset
+
+ is a real number).
+ This proves that 
+\begin_inset Formula $\Z_{a}\psi$
+\end_inset
+
+ is an eigenstate of the 
+\begin_inset Formula $\X_{a}\X_{b}\X_{c}\X_{d}$
+\end_inset
+
+ stabilizer but with the opposite sign of the original 
+\begin_inset Formula $\psi$
+\end_inset
+
+.
+ 
+\series bold
+Very important
+\series default
+:
+\series bold
+ the same argument applies to the other measure-
+\begin_inset Formula $\X$
+\end_inset
+
+ qubit adjacent to qubit 
+\begin_inset Formula $a$
+\end_inset
+
+ but such an error has no effect on neighboring measure-
+\begin_inset Formula $\Z$
+\end_inset
+
+ qubits 
+\series default
+(since 
+\begin_inset Formula $\Z$
+\end_inset
+
+s commute).
+ Thus, we can detect 
+\begin_inset Formula $\Z$
+\end_inset
+
+ errors through sign flips in measure-
+\begin_inset Formula $\X$
+\end_inset
+
+ qubits.
+ 
+\series bold
+A little thinking should reveal that the same is true for 
+\begin_inset Formula $\X$
+\end_inset
+
+ errors
+\series default
+.
+ Correcting such errors could involve simply applying the corresponding
+ operators (correct a 
+\begin_inset Formula $\Z_{a}$
+\end_inset
+
+ phase-flip by applying 
+\begin_inset Formula $\Z_{a}$
+\end_inset
+
+ again since 
+\begin_inset Formula $\Z_{a}^{2}=\hat{I}_{a}$
+\end_inset
+
+) but since this could introduce more errors it's usually handled in other
+ ways
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Fowler_2012"
+literal "false"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Section
+Logical Operators
+\end_layout
+
+\begin_layout Standard
+How does one perform quantum logic in the surface code? By which we mean,
+ given we're continually measuring the measurement qubits (stabilizing),
+ how (which) useful operations can we perform on the data qubits without
+ interfering with the stabilizers? Put another way: it may seem like process
+ of measuring the stabilizers over and over locks the quantum system into
+ exactly one logical state by virtue of constraining it to always be in
+ an eigenstate of all of the stabilizers.
+ That is actually what we implied at the end of section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:The-Stabilizer-Code"
+
+\end_inset
+
+
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+\begin_inset Quotes eld
+\end_inset
+
+simultaneous and unique eigenstate...
+\begin_inset Quotes erd
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+.
+ But, in fact, the set of stabilizers on an array such as 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "2dlattice-1-1"
+
+\end_inset
+
+ is actually not always complete and so quantum system can have some 
+\begin_inset Quotes eld
+\end_inset
+
+degrees of freedom
 \begin_inset Quotes erd
 \end_inset
 
 .
- We described how to detect errors in codes without really describing the
- encoding/code-space - we mention Shor codes but those actually aren't the
- only ones we can correct using this scheme.
- In general, the code space is the 
-\emph on
-linear subspace
-\emph default
- 
-\begin_inset Formula $T_{S_{k}}$
+ What does completeness mean? Completeness means any possible state can
+ be represented uniquely by some subset of states.
+ This is easiest to understand in terms of vector spaces like 
+\begin_inset Formula $\mathbb{R}^{3}$
 \end_inset
 
- of all possible 
-\begin_inset Formula $k$
-\end_inset
-
--qubit states in the intersection of all the 
-\begin_inset Formula $+1$
-\end_inset
-
- eigenspaces of 
-\begin_inset Formula $S_{k}$
-\end_inset
-
-
-\begin_inset Formula 
-\[
-T_{S_{k}}:=\left\{ \ket{\psi}\big\lvert\,g\ket{\psi}=+1\ket{\psi}\,\forall g\in S_{k}\right\} 
-\]
-
-\end_inset
-
-That's a lot of fancy words but basically this means 
-\begin_inset Formula $T_{S_{k}}$
-\end_inset
-
- consists of all sums
-\begin_inset Formula 
-\[
-\ket{\phi}=\sum_{k}\alpha_{k}\ket{\psi}
-\]
-
-\end_inset
-
-where each 
-\begin_inset Formula $\ket{\psi}$
+; the set of unit vectors 
+\begin_inset Formula $\left\{ \mathbf{e}_{1},\mathbf{e}_{2},\mathbf{e}_{3}\right\} \subset\mathbb{R}^{3}$
 \end_inset
 
  is 
 \series bold
-stabilized by all
+complete
 \series default
- 
-\begin_inset Formula $\forall g\in S_{k}$
+ for 
+\begin_inset Formula $\mathbb{R}^{3}$
 \end_inset
 
-.
- 
-\end_layout
-
-\begin_layout Standard
-In general 
-\begin_inset Formula $S_{k}$
+ because any vector 
+\begin_inset Formula $\psi$
 \end_inset
 
- is completely described by its 
-\emph on
-
-\begin_inset Formula $l$
-\end_inset
-
- 
-\emph default
-independent/unique 
-\emph on
-generators
-\begin_inset Foot
-status collapsed
-
-\begin_layout Plain Layout
-A generating set 
-\begin_inset Formula $\left\langle S\right\rangle $
-\end_inset
-
- of a group 
-\begin_inset Formula $S$
-\end_inset
-
- is a subset of the group set such that every element of the group can be
- expressed as a combination (under the group operation) of finitely many
- elements of the subset and their inverses.
-\end_layout
-
-\end_inset
-
- 
-\begin_inset Formula $\left\langle g_{1},\dots,g_{l}\right\rangle $
-\end_inset
-
-
-\emph default
-.
- You can rigorously prove that the dimension
-\begin_inset Foot
-status open
-
-\begin_layout Plain Layout
-I.e., dimension of the vector space of legal 
-\begin_inset Formula $k$
-\end_inset
-
- length qubit states.
-\end_layout
-
-\end_inset
-
- of 
-\begin_inset Formula $T_{S_{k}}$
-\end_inset
-
- is equal to 
-\begin_inset Formula $2^{k-l}$
-\end_inset
-
-, i.e.,
+ can be represented as the linear combination
 \begin_inset Formula 
 \[
-\left|T_{S_{k}}\right|=2^{k-l}
-\]
-
-\end_inset
-
-but intuitively you can think of it like this: for a 
-\begin_inset Formula $k$
-\end_inset
-
- dimensional code space, without any constraints (i.e., just by default),
- you have 
-\begin_inset Formula $2^{k}$
-\end_inset
-
- basis states (independent, legal, 
-\begin_inset Formula $k$
-\end_inset
-
- length qubit states).
- But then each stabilizer 
-\begin_inset Formula $g\in S_{k}$
-\end_inset
-
- constrains 
-\begin_inset Formula $\ket{\psi}$
-\end_inset
-
- to be in the 
-\begin_inset Formula $+1$
-\end_inset
-
--eigenspace of 
-\begin_inset Formula $g$
-\end_inset
-
- and thereby cuts the possibilities by half.
- Hence after constraining with 
-\begin_inset Formula $l$
-\end_inset
-
- stabilizers
-\begin_inset Formula 
-\[
-2^{k}\times\underbrace{\frac{1}{2}\frac{1}{2}\cdots\frac{1}{2}}_{l}=2^{k-l}
+\psi\equiv\alpha\mathbf{e}_{1}+\beta\mathbf{e}_{2}+\gamma\mathbf{e}_{3}
 \]
 
 \end_inset
 
 
-\end_layout
-
-\begin_layout Section
-Vertex Operators and Plaquette Operators
-\end_layout
-
-\begin_layout Standard
-\begin_inset Float figure
-wide false
-sideways false
-status open
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\begin_layout Plain Layout
-\align center
-\begin_inset Graphics
-	filename fig1_intro_toric_codes.png
-	lyxscale 50
-	width 70text%
-
+\begin_inset Formula $\left\{ \mathbf{e}_{1},\mathbf{e}_{2},\mathbf{e}_{3}\right\} $
 \end_inset
 
-
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-2D Lattice with periodic boundary conditions with .
- 
-\begin_inset Formula $v$
-\end_inset
-
- marks a particular vertex of the lattice and 
-\begin_inset Formula $p$
-\end_inset
-
- marks a particular 
-\begin_inset Quotes eld
-\end_inset
-
-face
-\begin_inset Quotes erd
-\end_inset
-
- of the lattice.
-\end_layout
-
-\end_inset
-
-
-\begin_inset CommandInset label
-LatexCommand label
-name "2dlattice"
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-Consider a 2D square lattice with periodic boundary conditions
-\begin_inset Foot
-status open
-
-\begin_layout Plain Layout
-i.e., a torus
-\end_layout
-
-\end_inset
-
- and single qubit, spin-
-\begin_inset Formula $\frac{1}{2}$
-\end_inset
-
- particles
-\begin_inset Foot
-status collapsed
-
-\begin_layout Plain Layout
-e.g., proton, neutron, electron, neutrino
-\end_layout
-
-\end_inset
-
- on each edge (see figure 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "2dlattice"
-plural "false"
-caps "false"
-noprefix "false"
-
-\end_inset
-
-).
- Take the standard 
-\begin_inset Formula $X:=\sigma_{x}$
-\end_inset
-
- and 
-\begin_inset Formula $Z:=\sigma_{z}$
-\end_inset
-
- Pauli operators.
- Assume the standard convention, that 
-\begin_inset Formula $\ket{0},\ket{1}$
-\end_inset
-
-are eigenstates of 
-\begin_inset Formula $Z$
-\end_inset
-
-, defined such that 
-\begin_inset Formula 
-\begin{align*}
-Z\ket{0} & =+1\ket{0}\\
-Z\ket{1} & =-1\ket{1}
-\end{align*}
-
-\end_inset
-
-Note that in the 
-\begin_inset Formula $Z$
-\end_inset
-
- basis, the 
-\begin_inset Formula $X$
-\end_inset
-
- operator acts as a 
-\begin_inset Quotes eld
-\end_inset
-
-spin-flip
-\begin_inset Quotes erd
-\end_inset
-
- operator:
-\begin_inset Formula 
-\begin{align*}
-X\ket{0} & =\ket{1}\\
-X\ket{1} & =\ket{0}
-\end{align*}
-
-\end_inset
-
-Then define 
-\begin_inset Quotes eld
-\end_inset
-
-vertex
-\begin_inset Quotes erd
-\end_inset
-
- operators 
-\begin_inset Formula $A_{v}$
-\end_inset
-
- and 
-\begin_inset Quotes eld
-\end_inset
-
-plaquette
-\begin_inset Quotes erd
-\end_inset
-
- (face) operators 
-\begin_inset Formula $B_{p}$
-\end_inset
-
-:
-\begin_inset Formula 
-\begin{align*}
-A_{v} & :=\prod_{j\in\text{star}\left(v\right)}Z_{j}\\
-B_{p} & :=\prod_{j\in\text{body}\left(p\right)}X_{j}
-\end{align*}
-
-\end_inset
-
-where 
-\begin_inset Formula $\text{star}\left(v\right)$
-\end_inset
-
- is the set of particles identified with edges adjacent on the vertex 
-\begin_inset Formula $v$
-\end_inset
-
-, and 
-\begin_inset Formula $\text{body}\left(p\right)$
-\end_inset
-
- is the set of particles identified with the edges surrounding the plaquette
- 
-\begin_inset Formula $p$
+ is called a 
+\series bold
+basis
+\series default
+ for 
+\begin_inset Formula $\mathbb{R}^{3}$
 \end_inset
 
 .
- Note the product here is a tensor product.
- Then define the following Hamiltonian
-\begin_inset Formula 
-\begin{equation}
-H:=-\sum_{v}A_{v}-\sum_{p}B_{p}\label{eq:hamil}
-\end{equation}
-
-\end_inset
-
-where 
-\begin_inset Formula $\sum_{v}$
-\end_inset
-
- is over all vertices in the lattice and 
-\begin_inset Formula $\sum_{p}$
-\end_inset
-
- is over all plaquettes.
- Recall the Hamiltonian of a system specifies its total energy.
-\end_layout
-
-\begin_layout Standard
-Facts:
-\end_layout
-
-\begin_layout Enumerate
-\begin_inset Formula $A_{v}$
-\end_inset
-
- and 
-\begin_inset Formula $B_{p}$
-\end_inset
-
- are all Hermitian
-\begin_inset Foot
-status collapsed
-
-\begin_layout Plain Layout
-\begin_inset Formula $H$
-\end_inset
-
- is Hermitian iff 
-\begin_inset Formula $\langle H\psi\vert\psi\rangle=\langle\psi\vert H\psi\rangle=\langle H^{\dagger}\psi\vert\psi\rangle$
-\end_inset
-
-.
- Also sometimes called 
-\emph on
-self-adjoint.
-\end_layout
-
-\end_inset
-
- and square to the identity
-\begin_inset Foot
-status open
-
-\begin_layout Plain Layout
-\begin_inset Formula $A_{v}\cdot A_{v}^{\dagger}\equiv I$
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-.
- Therefore they each (all) have eigenvalues of either 
-\begin_inset Formula $+1$
-\end_inset
-
- or 
-\begin_inset Formula $-1$
-\end_inset
-
-.
-\end_layout
-
-\begin_layout Enumerate
-Each of them commutes with all of the others
-\end_layout
-
-\begin_deeper
-\begin_layout Enumerate
-\begin_inset Formula $A_{v}$
-\end_inset
-
- commutes with 
-\begin_inset Formula $A_{v'}$
-\end_inset
-
- because they do not overlap at all
-\end_layout
-
-\begin_layout Enumerate
-\begin_inset Formula $B_{p}$
-\end_inset
-
- and 
-\begin_inset Formula $B_{p'}$
-\end_inset
-
- overlap on at most one edge and 
-\begin_inset Formula $X_{j}$
-\end_inset
-
- always commutes with 
-\begin_inset Formula $X_{j'}$
-\end_inset
-
- (and thus 
-\begin_inset Formula $B_{p}$
-\end_inset
-
- and 
-\begin_inset Formula $B_{p'}$
-\end_inset
-
- commute)
-\end_layout
-
-\begin_layout Enumerate
-If some 
-\begin_inset Formula $A_{v}$
-\end_inset
-
- overlaps with some 
-\begin_inset Formula $B_{p}$
-\end_inset
-
- then they overlap on two edges; the overlapping 
-\begin_inset Formula $Z,X$
-\end_inset
-
- (one pair on each edge) each anti-commute but since there are two such
- pairs, the effect is cancelled out
-\end_layout
-
-\end_deeper
-\begin_layout Enumerate
-Therefore, we can measure all the 
-\begin_inset Formula $A_{v}$
-\end_inset
-
- and 
-\begin_inset Formula $B_{p}$
-\end_inset
-
- simultaneously and the ground-state energy of 
-\begin_inset Formula $H$
-\end_inset
-
- (i.e., the lowest energy state) will be the product of the 
-\begin_inset Formula $+1$
-\end_inset
-
- eigenstates of all of the 
-\begin_inset Formula $A_{v}$
-\end_inset
-
- and 
-\begin_inset Formula $B_{p}$
-\end_inset
-
-
-\begin_inset Foot
-status open
-
-\begin_layout Plain Layout
-Since, if you plug 
-\begin_inset Formula $A_{v}\equiv B_{p}\equiv1$
-\end_inset
-
- into eqn.
- 
-\begin_inset CommandInset ref
-LatexCommand eqref
-reference "eq:hamil"
-plural "false"
-caps "false"
-noprefix "false"
-
-\end_inset
-
- you get the largest negative sum.
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset Separator plain
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-All of this should be looking familiar given section 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "sec:The-stabilizer-formalism"
-
-\end_inset
-
- and it should come as no surprise that 
-\begin_inset Formula $\left\{ A_{v},B_{p}\right\} $
-\end_inset
-
- (over all vertices and all faces) comprise a stabilizer subgroup (of the
- Pauli group 
-\begin_inset Formula $G_{k}$
-\end_inset
-
- on the lattice, where 
-\begin_inset Formula $k$
-\end_inset
-
- is the number of particles captured by the lattice).
- So what's the dimension of the code space 
-\begin_inset Formula $T_{S_{k}}$
-\end_inset
-
- on this lattice with these stabilizers? Thinking a little bit imaginatively
- about 
-\begin_inset Formula $\left\{ A_{v},B_{p}\right\} $
-\end_inset
-
- as a set of constraints gives some physical meaning to them: violating
- any of the constraints (i.e., a state generating a measurement of 
-\begin_inset Formula $-1$
-\end_inset
-
- from any of the 
-\begin_inset Formula $\left\{ A_{v},B_{p}\right\} $
-\end_inset
-
-) costs energy by virtue of the hamiltonian (any 
-\begin_inset Formula $A_{v},B_{p}$
-\end_inset
-
- that measures 
-\begin_inset Formula $-1$
-\end_inset
-
- will contribute a positive term to the sum in eqn.
- 
-\begin_inset CommandInset ref
-LatexCommand eqref
-reference "eq:hamil"
-plural "false"
-caps "false"
-noprefix "false"
-
-\end_inset
-
-).
- Thus, the ground-state of the system (i.e., the lowest energy state) should
- obey all of the 
-\begin_inset Quotes eld
-\end_inset
-
-constraints
-\begin_inset Quotes erd
-\end_inset
-
- induced by 
-\begin_inset Formula $\left\{ A_{v},B_{p}\right\} $
-\end_inset
-
-.
- All told the dimension of the code space is four 
-\begin_inset CommandInset citation
-LatexCommand cite
-key "introtoriccode"
-literal "false"
-
-\end_inset
-
-.
-\end_layout
-
-\begin_layout Section
-Toric Codes
-\end_layout
-
-\begin_layout Standard
-But what do the possible legal codes look like? Note (by the just preceding
- discussion on satisfying constraints), this is the same thing as considering
- what are the ground-states (lowest energy states) of the system.
- First, as a kind of warm up, consider only the 
-\begin_inset Formula $A_{v}$
-\end_inset
-
- and the system state where each qubit is in the 
-\begin_inset Formula $\ket{0}$
-\end_inset
-
- state.
- In such a state, all 
-\begin_inset Formula $A_{v}$
-\end_inset
-
- would be measured in the 
-\begin_inset Formula $+1$
-\end_inset
-
- state as well.
- What happens if we apply 
-\begin_inset Formula $X$
-\end_inset
-
- to one or two qubits in a row (i.e., flip two spins)? In this case only vertex
- operators 
-\begin_inset Formula $A_{v}$
-\end_inset
-
- adjacent to those qubits will be affected, through the 
-\begin_inset Formula $Z_{j}$
-\end_inset
-
- that measures 
-\begin_inset Formula $-1$
-\end_inset
-
- on the flipped qubit (see figure 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "spinflips"
-
-\end_inset
-
- where in (a) we show how one such 
-\begin_inset Formula $A_{v}$
-\end_inset
-
- is affected).
- Crucially, notice that for longer strings of errors (
-\begin_inset Formula $\geq3$
-\end_inset
-
- qubits) it's only the 
-\begin_inset Formula $A_{v}$
-\end_inset
-
- at the ends of the string that will pick up the error.
- This ambiguity is what leads to techniques such as minimum weight perfect
- matching
-\begin_inset CommandInset citation
-LatexCommand cite
-key "https://doi.org/10.48550/arxiv.2105.13082"
-literal "false"
-
-\end_inset
-
-.
- What happens if we flip a sequence of qubits that comprise a 
-\begin_inset Quotes eld
+ Okay but what happens if we forgo the use of say 
+\begin_inset Formula $\mathbf{e}_{3}$
 \end_inset
 
-loop
-\begin_inset Quotes erd
+ in trying to represent vectors in 
+\begin_inset Formula $\mathbb{R}^{3}$
 \end_inset
 
- on the lattice? In that case, any 
-\begin_inset Formula $A_{v}$
+? Well then there are a lot of different vectors 
+\begin_inset Formula $\psi,\psi'$
 \end_inset
 
- adjacent to any of the qubits will have 2 of its 4 
-\begin_inset Formula $Z_{j}$
+ that will have the same representation in terms 
+\begin_inset Formula $\left\{ \mathbf{e}_{1},\mathbf{e}_{2}\right\} $
 \end_inset
 
- measure 
-\begin_inset Formula $-1$
+ but actually be very different.
+ In fact there's a whole line of them right? For fixed 
+\begin_inset Formula $\alpha,\beta$
 \end_inset
 
- on the flipped qubits and but since
+ the vectors
 \begin_inset Formula 
 \[
-A_{v}:=Z_{j_{1}}Z_{j_{2}}Z_{j_{3}}Z_{j_{4}}\equiv\left(+1\times+1\right)\times\left(-1\times-1\right)\equiv+1
+\psi_{k}:=\alpha\mathbf{e}_{1}+\beta\mathbf{e}_{2}+k\mathbf{e}_{3}
 \]
 
 \end_inset
 
-
-\begin_inset Formula $A_{v}$
+will have the same representation in terms of 
+\begin_inset Formula $\left\{ \mathbf{e}_{1},\mathbf{e}_{2}\right\} $
 \end_inset
 
- will still be measured in its 
-\begin_inset Formula $+1$
+ (namely 
+\begin_inset Formula $\left(\alpha,\beta\right)$
 \end_inset
 
- eigenstate.
- 
-\begin_inset Float figure
-wide false
-sideways false
-status open
-
-\begin_layout Plain Layout
-\align center
-\begin_inset Graphics
-	filename spinflips.png
-	lyxscale 50
-	width 70text%
-
-\end_inset
-
-
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-\begin_inset Quotes eld
-\end_inset
-
-Flipped qubits
-\begin_inset Quotes erd
-\end_inset
-
- are shaded black.
- In (a) we consider a short string of flipped qubits and in (b) we consider
- a loop of flipped qubits.
-\end_layout
-
-\end_inset
-
-
-\begin_inset CommandInset label
-LatexCommand label
-name "spinflips"
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-Indeed there are many, many such possible states (with some number of non-flippe
-d qubits but also loops of flipped qubits).
- This is called 
-\emph on
-degeneracy
-\emph default
-, when lots of distinct physical states are measured to have the same energy.
- In particular, if we only measure 
-\begin_inset Formula $A_{v}$
-\end_inset
-
-, loops that go over the edge and back aroud (i.e., all the way around the
- torus), will also be indistringuishable from the groundstate.
-\end_layout
-
-\begin_layout Standard
-Recall that what we're trying to accomplish in constructing error correcting
- codes is to discover particular states of our quantum system (in this case,
- a lattice of spin-
-\begin_inset Formula $\frac{1}{2}$
-\end_inset
-
- particles) that can be distinguished between using non-destructive measurements
- (in this case, using stabilizers).
- Therefore such degeneracy is problematic.
- The resolution is to apply the 
-\begin_inset Formula $B_{p}$
-\end_inset
-
-, i.e., measure 
-\begin_inset Formula $B_{p}$
-\end_inset
-
- 
-\emph on
-as well as
-\emph default
- the 
-\begin_inset Formula $A_{v}$
-\end_inset
-
-.
- What does this accomplish? Well looking at figure 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "spinflipswithbp"
-
-\end_inset
-
-, it seems like not much, but in fact we've gained a useful ability: we
- can use the 
-\begin_inset Formula $B_{p}$
-\end_inset
-
- to completely eliminate any loop of spin flips, by applying the 
-\begin_inset Formula $B_{p}$
-\end_inset
-
- operators adjacent to the interior edge of the loop (see figure 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "spinflipswithbp-1"
-
+) but will actually be different vectors (in 
+\begin_inset Formula $\mathbb{R}^{3}$
 \end_inset
 
 ).
- 
-\begin_inset Float figure
-wide false
-sideways false
-status open
-
-\begin_layout Plain Layout
-\align center
-\begin_inset Graphics
-	filename spinflipswithbp.png
-	lyxscale 50
-	width 70text%
-
+ That single 
+\begin_inset Formula $k$
 \end_inset
 
-
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-Both 
-\begin_inset Formula $A_{v}$
-\end_inset
-
- and 
-\begin_inset Formula $B_{p}$
-\end_inset
-
- being measured.
-\end_layout
-
-\end_inset
-
-
-\begin_inset CommandInset label
-LatexCommand label
-name "spinflipswithbp"
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\begin_inset Float figure
-wide false
-sideways false
-status open
-
-\begin_layout Plain Layout
-\align center
-\begin_inset Graphics
-	filename spinflipswithbplooperase.png
-	lyxscale 50
-	width 70text%
-
-\end_inset
-
-
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-Using 
-\begin_inset Formula $B_{p}$
-\end_inset
-
- to collapse the loop in fig.
- 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "spinflipswithbp"
-
-\end_inset
-
- - notice that the 
-\begin_inset Formula $X$
-\end_inset
-
- operators flip the flipped spins 
+ is the single 
 \begin_inset Quotes eld
 \end_inset
 
-back to normal
+degree of freedom
 \begin_inset Quotes erd
 \end_inset
 
+ due to the incomplete set 
+\begin_inset Formula $\left\{ \mathbf{e}_{1},\mathbf{e}_{2}\right\} $
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Looking at the array in figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "2dlattice-1-1"
+
+\end_inset
+
+, there are 41 data qubits and 40 measure qubits, so there are 
+\begin_inset Formula $2\times41$
+\end_inset
+
+ degrees of freedom in the data qubits and 
+\begin_inset Formula $2\times40$
+\end_inset
+
+ constraints from the stabilizer measurements
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+The state of an 
+\begin_inset Formula $n$
+\end_inset
+
+-qubit system lives in 
+\begin_inset Formula $\mathbb{R}^{2^{n}}$
+\end_inset
+
+
+\series bold
+but independent measurements of each of the 
+\begin_inset Formula $n$
+\end_inset
+
+ qubits live in 
+\begin_inset Formula $\mathbb{R}^{2n}$
+\end_inset
+
  
-\emph on
-and
-\emph default
- cancel each other out (on the interior).
+\series default
+since for each measurment you get one of two eigenstates.
+\end_layout
+
+\end_inset
+
+.
+ These 2 extra degrees of freedom (
+\begin_inset Formula $2\cdot41-2\cdot40=2$
+\end_inset
+
+) means the array can serve as a (single) logical qubit.
+ That is to say, we can perform operations on the array that encode useful
+ information along those two free dimensions without interfering/disturbing
+ the stabilizer measurement scheme/process.
+ But how do we find the operators that will allow us to manipulate the additiona
+l degrees of freedom in the array, without affecting the stabilizers? The
+ trick is realizing that stabilizer measurements by adjacent stabilizers
+ commute because they share a pair of data qubits (see figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "2dlattice-1-1-1"
+
+\end_inset
+
+):
+\begin_inset Formula 
+\begin{align}
+\left[\X_{a}\X_{b}\X_{c}\X_{d},\Z_{a}\Z_{b}\Z_{e}\Z_{f}\right] & =\left(\X_{a}\Z_{a}\right)\left(\X_{b}\Z_{b}\right)\X_{c}\X_{d}\Z_{e}\Z_{f}-\nonumber \\
+ & \qquad\left(\Z_{a}\X_{a}\right)\left(\Z_{b}\X_{b}\right)\X_{c}\X_{d}\Z_{e}\Z_{f}\nonumber \\
+ & =\left(\X_{a}\Z_{a}\right)\left(\X_{b}\Z_{b}\right)\X_{c}\X_{d}\Z_{e}\Z_{f}-\left(-\Z_{a}\X_{a}\right)\left(-\Z_{b}\X_{b}\right)\X_{c}\X_{d}\Z_{e}\Z_{f}\label{eq:commutestab}\\
+ & =0\nonumber 
+\end{align}
+
+\end_inset
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename adjacentstab.png
+	lyxscale 50
+	width 70text%
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
 \end_layout
 
 \end_inset
@@ -1374,7 +1597,7 @@ and
 
 \begin_inset CommandInset label
 LatexCommand label
-name "spinflipswithbp-1"
+name "2dlattice-1-1-1"
 
 \end_inset
 
@@ -1383,86 +1606,207 @@ name "spinflipswithbp-1"
 
 \end_inset
 
-But measuring 
-\begin_inset Formula $B_{p}$
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename lopicalops.png
+	lyxscale 50
+	width 70text%
+
 \end_inset
 
- along with 
-\begin_inset Formula $A_{v}$
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+\end_layout
+
 \end_inset
 
- doesn't resolve all ambiguities; consider a loop of flipped spins that
- extends all the way around the edge of the lattice (i.e., wraps around an
- axis of the torus).
- Applying 
-\begin_inset Formula $B_{p}$
+
+\begin_inset CommandInset label
+LatexCommand label
+name "2dlattice-1-2-1"
+
 \end_inset
 
- to each particle along such a loop would simply shift the loop laterally.
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "2dlattice-1-3"
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+(a) Adjacent qubits 
+\begin_inset Formula $a,b$
+\end_inset
+
+ shared by stabilizers 
+\begin_inset Formula $\X_{a}\X_{b}\X_{c}\X_{d}$
+\end_inset
+
+ and 
+\begin_inset Formula $\Z_{a}\Z_{b}\Z_{e}\Z_{f}$
+\end_inset
+
+.
+ (b) Logical operators 
+\begin_inset Formula $\X_{L}$
+\end_inset
+
+ and 
+\begin_inset Formula $\Z_{L}$
+\end_inset
+
+ as 
+\begin_inset Quotes eld
+\end_inset
+
+product chains
+\begin_inset Quotes erd
+\end_inset
+
+ as well as a modification of 
+\begin_inset Formula $\X_{L}$
+\end_inset
+
+ to 
+\begin_inset Formula $\X_{L}^{'}$
+\end_inset
+
+ that is equivalent in terms of being a valid logical operator.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+Similarly, products of pairs operators adjacent to the same stabilizer also
+ commute with that stabilizer: 
+\begin_inset Formula 
+\begin{align*}
+\Z_{a}\Z_{b}\Z_{c}\Z_{d}\left(\X_{a}\X_{b}\right)\psi & =\left(-1\right)^{2}\X_{a}\X_{b}\left(\Z_{a}\Z_{b}\Z_{c}\Z_{d}\right)\psi=Z_{abcd}\X_{a}\X_{b}\psi
+\end{align*}
+
+\end_inset
+
+(recall that 
+\begin_inset Formula $Z_{abcd}$
+\end_inset
+
+is the outcome of the measurement of 
+\begin_inset Formula $\Z_{a}\Z_{b}\Z_{c}\Z_{d}$
+\end_inset
+
+, i.e., a real number).
+ A similar calculation follows for pairs of 
+\begin_inset Formula $\Z_{i}$
+\end_inset
+
+ adjacent to 
+\begin_inset Formula $\X$
+\end_inset
+
+ stabilizers.
+ This shows that 
+\begin_inset Quotes eld
+\end_inset
+
+product chains
+\begin_inset Quotes erd
+\end_inset
+
+ of operators 
+\begin_inset Formula $\Z_{i}$
+\end_inset
+
  
 \series bold
-Thus, we have found the set of undetectable errors for this coding scheme
+that stretch across the entire length of the array 
 \series default
-, i.e., the set 
-\begin_inset Formula $\left\{ \bar{X_{1}},\bar{X_{2}},\bar{Z_{1}},\bar{Z_{2}}\right\} $
+commute with all 
+\begin_inset Formula $\X$
+\end_inset
+
+ stabilizers and 
+\begin_inset Quotes eld
+\end_inset
+
+product chains
+\begin_inset Quotes erd
 \end_inset
 
  of 
-\emph on
-Toric codes
-\emph default
- (see figure 
+\begin_inset Formula $\X_{i}$
+\end_inset
+
+ commute with all 
+\begin_inset Formula $\Z$
+\end_inset
+
+ stabilizers.
+ Picking two such chains arbitrarily 
+\begin_inset Formula $\X_{L}$
+\end_inset
+
+ and 
+\begin_inset Formula $\Z_{L}$
+\end_inset
+
+ we have our logical operators (see figure 
 \begin_inset CommandInset ref
 LatexCommand ref
-reference "spinflipswithbp-1-1"
+reference "2dlattice-1-2-1"
 
 \end_inset
 
-).
- The fact that there are only four such codes is intimately related to the
- dimension
-\begin_inset CommandInset citation
-LatexCommand cite
-key "toriccodes"
-literal "false"
-
+), in that they each transform a quiescent state 
+\begin_inset Formula $\psi$
 \end_inset
 
- of the stabilizer group (which we earlier computed to be 4).
- Note, that the distance between codes is the width or height of the lattice
- (whichever is larger).
-\begin_inset Float figure
-wide false
-sideways false
-status open
+ into some new state 
+\begin_inset Formula $\psi'$
+\end_inset
+
+, which while still an eigenstate of all of the stabilizers, cannot be written
+ a product of them
+\begin_inset Foot
+status collapsed
 
 \begin_layout Plain Layout
-\align center
-\begin_inset Graphics
-	filename toriclogicbits.png
-	lyxscale 50
-	width 70text%
-
+Each chain is said to 
+\begin_inset Quotes eld
 \end_inset
 
-
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-The fourse possible logical operators 
-\begin_inset Formula $\bar{X_{1}}$
+manipulate
+\begin_inset Quotes erd
 \end_inset
 
-, 
-\begin_inset Formula $\bar{X_{2}}$
-\end_inset
-
-, 
-\begin_inset Formula $\bar{Z_{1}}$
-\end_inset
-
-, 
-\begin_inset Formula $\bar{Z_{2}}$
+ 1 degree of freedom by changing 
+\begin_inset Formula $\psi\rightarrow\psi'\rightarrow\psi''$
 \end_inset
 
 .
@@ -1470,19 +1814,41 @@ The fourse possible logical operators
 
 \end_inset
 
+.
+ In fact the chains need not be 
+\begin_inset Quotes eld
+\end_inset
 
-\begin_inset CommandInset label
-LatexCommand label
-name "spinflipswithbp-1-1"
+flat
+\begin_inset Quotes erd
+\end_inset
+
+ (straight lines); they can be deformed arbitrarily (as long as no crossings
+ are introduced).
+ For example, consider the pink deformation in figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "2dlattice-1-2-1"
 
 \end_inset
 
 
-\end_layout
+\begin_inset Formula 
+\[
+\X_{L}^{'}\psi=X_{2,10,11,12}\hat{X}_{L}\psi=\pm\hat{X}_{L}\psi=\pm\psi
+\]
 
 \end_inset
 
+where 
+\begin_inset Formula $X_{2,10,11,12}$
+\end_inset
 
+ is the outcome of the measurement of stabilizer 
+\begin_inset Formula $\X_{2}\X_{10}\X_{11}\X_{12}$
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Standard
