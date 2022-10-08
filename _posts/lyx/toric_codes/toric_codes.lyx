@@ -103,17 +103,6 @@ LatexCommand tableofcontents
 
 \end_layout
 
-\begin_layout Section
-The stabilizer formalism
-\begin_inset CommandInset label
-LatexCommand label
-name "sec:The-stabilizer-formalism"
-
-\end_inset
-
-
-\end_layout
-
 \begin_layout Standard
 \begin_inset FormulaMacro
 \newcommand{\Z}{\hat{Z}}
@@ -585,7 +574,7 @@ status open
 \begin_inset Text
 
 \begin_layout Plain Layout
-\begin_inset Formula $+1$
+\begin_inset Formula $-1$
 \end_inset
 
 
@@ -597,7 +586,7 @@ status open
 \begin_inset Text
 
 \begin_layout Plain Layout
-\begin_inset Formula $+1$
+\begin_inset Formula $-1$
 \end_inset
 
 
