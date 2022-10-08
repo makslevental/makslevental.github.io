@@ -1242,7 +1242,29 @@ where
 \begin_inset Formula $\Z_{a}\psi$
 \end_inset
 
- is an eigenstate of the 
+ is an eigenstate
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+Recall that the definition of an eigenstate 
+\begin_inset Formula $\psi$
+\end_inset
+
+ for an operator 
+\begin_inset Formula $K$
+\end_inset
+
+ is 
+\begin_inset Formula $K\psi=k\psi$
+\end_inset
+
+.
+\end_layout
+
+\end_inset
+
+ of the 
 \begin_inset Formula $\X_{a}\X_{b}\X_{c}\X_{d}$
 \end_inset
 
@@ -1340,7 +1362,7 @@ reference "sec:The-Stabilizer-Code"
 
 
 \begin_inset Foot
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \begin_inset Quotes eld
@@ -1372,105 +1394,42 @@ degrees of freedom
 \end_inset
 
 .
- What does completeness mean? Completeness means any possible state can
- be represented uniquely by some subset of states.
- This is easiest to understand in terms of vector spaces like 
-\begin_inset Formula $\mathbb{R}^{3}$
-\end_inset
+ 
+\end_layout
 
-; the set of unit vectors 
-\begin_inset Formula $\left\{ \mathbf{e}_{1},\mathbf{e}_{2},\mathbf{e}_{3}\right\} \subset\mathbb{R}^{3}$
-\end_inset
-
- is 
-\series bold
-complete
-\series default
- for 
-\begin_inset Formula $\mathbb{R}^{3}$
-\end_inset
-
- because any vector 
-\begin_inset Formula $\psi$
-\end_inset
-
- can be represented as the linear combination
-\begin_inset Formula 
-\[
-\psi\equiv\alpha\mathbf{e}_{1}+\beta\mathbf{e}_{2}+\gamma\mathbf{e}_{3}
-\]
-
-\end_inset
-
-
-\begin_inset Formula $\left\{ \mathbf{e}_{1},\mathbf{e}_{2},\mathbf{e}_{3}\right\} $
-\end_inset
-
- is called a 
-\series bold
-basis
-\series default
- for 
-\begin_inset Formula $\mathbb{R}^{3}$
-\end_inset
-
+\begin_layout Standard
+What are degrees of freedom? The fancy definition is 
+\emph on
+the dimension of the configuration space of the system
+\emph default
 .
- Okay but what happens if we forgo the use of say 
-\begin_inset Formula $\mathbf{e}_{3}$
+ You can think of this quantity, say 
+\begin_inset Formula $n$
 \end_inset
 
- in trying to represent vectors in 
-\begin_inset Formula $\mathbb{R}^{3}$
-\end_inset
-
-? Well then there are a lot of different vectors 
-\begin_inset Formula $\psi,\psi'$
-\end_inset
-
- that will have the same representation in terms 
-\begin_inset Formula $\left\{ \mathbf{e}_{1},\mathbf{e}_{2}\right\} $
-\end_inset
-
- but actually be very different.
- In fact there's a whole line of them right? For fixed 
+, as the minimum number of real numbers needed to fully describe the system.
+ For example, a tennis ball flying through the air has 6 degrees of freedom:
+ 3 cartesian coordinates are needed to describe its position, along with
+ a velocity vector that has 3 independent components.
+ A more interesting example could be something like a rollercoaster car;
+ superficially it may look like it has the same number as the tennis ball
+ - it is moving through space after all - but since it's locked to the track
+ the 3 position coordinates aren't independent amongst each other (and neither
+ are the 3 components of the velocity vector).
+ Indeed the rollercoaster car is really only traveling in one dimension
+ - backwards and forwards along the track - and so it only has 2 degrees
+ of freedom (position along the track and velocity).
+ More pertinently a single qubit has 2 degrees of freedom: its phase and
+ its amplitude or, alternatively the coefficients 
 \begin_inset Formula $\alpha,\beta$
 \end_inset
 
- the vectors
-\begin_inset Formula 
-\[
-\psi_{k}:=\alpha\mathbf{e}_{1}+\beta\mathbf{e}_{2}+k\mathbf{e}_{3}
-\]
-
+ if it is interpreted to be in a superposition of 
+\begin_inset Formula $\ket{0}$
 \end_inset
 
-will have the same representation in terms of 
-\begin_inset Formula $\left\{ \mathbf{e}_{1},\mathbf{e}_{2}\right\} $
-\end_inset
-
- (namely 
-\begin_inset Formula $\left(\alpha,\beta\right)$
-\end_inset
-
-) but will actually be different vectors (in 
-\begin_inset Formula $\mathbb{R}^{3}$
-\end_inset
-
-).
- That single 
-\begin_inset Formula $k$
-\end_inset
-
- is the single 
-\begin_inset Quotes eld
-\end_inset
-
-degree of freedom
-\begin_inset Quotes erd
-\end_inset
-
- due to the incomplete set 
-\begin_inset Formula $\left\{ \mathbf{e}_{1},\mathbf{e}_{2}\right\} $
+ and 
+\begin_inset Formula $\ket{1}$
 \end_inset
 
 .
@@ -1492,37 +1451,7 @@ reference "2dlattice-1-1"
 \begin_inset Formula $2\times40$
 \end_inset
 
- constraints from the stabilizer measurements
-\begin_inset Foot
-status collapsed
-
-\begin_layout Plain Layout
-The state of an 
-\begin_inset Formula $n$
-\end_inset
-
--qubit system lives in 
-\begin_inset Formula $\mathbb{R}^{2^{n}}$
-\end_inset
-
-
-\series bold
-but independent measurements of each of the 
-\begin_inset Formula $n$
-\end_inset
-
- qubits live in 
-\begin_inset Formula $\mathbb{R}^{2n}$
-\end_inset
-
- 
-\series default
-since for each measurment you get one of two eigenstates.
-\end_layout
-
-\end_inset
-
-.
+ constraints from the stabilizer measurements.
  These 2 extra degrees of freedom (
 \begin_inset Formula $2\cdot41-2\cdot40=2$
 \end_inset
@@ -1532,9 +1461,10 @@ since for each measurment you get one of two eigenstates.
  information along those two free dimensions without interfering/disturbing
  the stabilizer measurement scheme/process.
  But how do we find the operators that will allow us to manipulate the additiona
-l degrees of freedom in the array, without affecting the stabilizers? The
- trick is realizing that stabilizer measurements by adjacent stabilizers
- commute because they share a pair of data qubits (see figure 
+l degrees of freedom in the array, without affecting the stabilizers? One
+ observation that points in the right direction is that stabilizer measurements
+ by adjacent stabilizers commute because they share a pair of data qubits
+ (see figure 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "2dlattice-1-1-1"
@@ -1546,7 +1476,8 @@ reference "2dlattice-1-1-1"
 \begin{align}
 \left[\X_{a}\X_{b}\X_{c}\X_{d},\Z_{a}\Z_{b}\Z_{e}\Z_{f}\right] & =\left(\X_{a}\Z_{a}\right)\left(\X_{b}\Z_{b}\right)\X_{c}\X_{d}\Z_{e}\Z_{f}-\nonumber \\
  & \qquad\left(\Z_{a}\X_{a}\right)\left(\Z_{b}\X_{b}\right)\X_{c}\X_{d}\Z_{e}\Z_{f}\nonumber \\
- & =\left(\X_{a}\Z_{a}\right)\left(\X_{b}\Z_{b}\right)\X_{c}\X_{d}\Z_{e}\Z_{f}-\left(-\Z_{a}\X_{a}\right)\left(-\Z_{b}\X_{b}\right)\X_{c}\X_{d}\Z_{e}\Z_{f}\label{eq:commutestab}\\
+ & =\left(\X_{a}\Z_{a}\right)\left(\X_{b}\Z_{b}\right)\X_{c}\X_{d}\Z_{e}\Z_{f}\label{eq:commutestab}\\
+ & \qquad-\left(-\Z_{a}\X_{a}\right)\left(-\Z_{b}\X_{b}\right)\X_{c}\X_{d}\Z_{e}\Z_{f}\\
  & =0\nonumber 
 \end{align}
 
@@ -1795,7 +1726,7 @@ manipulate
 \end_inset
 
  1 degree of freedom by changing 
-\begin_inset Formula $\psi\rightarrow\psi'\rightarrow\psi''$
+\begin_inset Formula $\psi\rightarrow\psi'$
 \end_inset
 
 .
@@ -1804,7 +1735,7 @@ manipulate
 \end_inset
 
 .
- In fact the chains need not be 
+ In fact the chains need not even be 
 \begin_inset Quotes eld
 \end_inset
 
