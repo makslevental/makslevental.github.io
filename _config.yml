@@ -63,7 +63,7 @@ kramdown:
   input: GFM
   syntax_highlighter: rouge
   syntax_highlighter_opts:
-    css_class: 'highlight'
+    css_class: 'thankful_eyes'
     escape: true
 
 # Set the Sass partials directory, as we're using @imports
@@ -84,4 +84,5 @@ exclude:
   - README.md
   - CNAME
 
-theme: jekyll-theme-minimal
+# theme: jekyll-theme-minimal
+theme: minima
