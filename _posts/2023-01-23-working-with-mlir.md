@@ -101,6 +101,9 @@ nm -gDC _mlir.cpython-310-x86_64-linux-gnu.so | grep -C10 SuccessorRange
 
 `T` means is present/defined/accessible from the `.so` itself while `U` means the symbol is undefined (and must be sought elsewhere by the runtime linker/loader). Again `man nm` is useful for a listing of the definitions of other possible labels.
 
+
+**On Mac OS** this is `DYLD_PRINT_SEARCHING=1 DYLD_PRINT_BINDINGS=1 DYLD_PRINT_LIBRARIES=1`; additionally `LD_PRELOAD` is `DYLD_INSERT_LIBRARIES`.
+
 ## Use `c++filt` to demangle symbol names
 
 Names in symbol tables in objects/binaries/whatever are "name mangled"; something like `_ZN4mlir14SuccessorRangeC1EPNS_9OperationE` will appear in a symbol table and can be "demangled":
@@ -204,6 +207,25 @@ def dl_open_guard():
 with dl_open_guard():
     # noinspection PyUnresolvedReferences
     from loopy.loopy_mlir._mlir_libs import _mlir
+```
+
+### Fixing missing `__ZTVN4mlir4PassE` i.e. `typeinfo for mlir::Pass`
+
+This is also about RTTI but in a different way because while the Python extensions in MLIR are compiled with RTTI (in order to support `pybind11`), the rest of MLIR is not (by default).
+Thus if you see this, it means you're compiling something which then links against MLIR libs and expects them to have `typeinfo`, which they will not. 
+The solution is to compile your thing without RTTI as well; add this to you `CMakeLists.txt`:
+
+```
+if (NOT LLVM_ENABLE_RTTI)
+    message(STATUS "NOT LLVM_ENABLE_RTTI")
+    if (MSVC)
+        string(REGEX REPLACE "/GR" "" CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS}")
+        set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /GR-")
+    else ()
+        string(REGEX REPLACE "-frtti" "" CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS}")
+        set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fno-rtti")
+    endif ()
+endif ()
 ```
 
 ## `libstdc++.so.6: version `GLIBCXX_3.4.30' not found`
