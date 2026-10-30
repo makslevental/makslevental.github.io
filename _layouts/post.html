@@ -5,9 +5,12 @@ layout: default
 {%- assign h1s = content | split: "<h1 " | size | minus: 1 -%}
 {%- assign h2s = content | split: "<h2 " | size | minus: 1 -%}
 {%- assign headings = h1s | plus: h2s -%}
+{%- if content contains 'class="footnote"' or content contains 'class="sidenote' -%}
+  {%- assign notes = true -%}
+{%- endif -%}
 
-<article class="post container">
-  <div class="{% if headings >= 2 %}has-toc{% endif %}">
+<article class="post container{% if notes %} has-notes{% endif %}">
+  <div class="post-grid{% if headings >= 2 %} has-toc{% endif %}">
     {%- if headings >= 2 %}
     <details class="toc" open>
       <summary>Contents</summary>
