@@ -2,6 +2,7 @@
 layout: post
 title: Functional Differential Geometry
 published: false
+tags: [differential-geometry]
 ---
 
 For an $n$-dimensional manifold, around every point there is a simply-connected open set, the *coordinate patch*, and a one-to-one continuous function, the *coordinate function* or *chart*, mapping every point in that open set to a tuple of $n$ real numbers, the *coordinates*.

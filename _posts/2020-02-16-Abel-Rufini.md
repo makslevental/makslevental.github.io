@@ -2,6 +2,7 @@
 layout: post
 title: Abel-Rufini theorem
 published: true
+tags: [math]
 ---
 
 This post follows [this video](https://www.youtube.com/watch?v=zeRXVL6qPk4) and explicates Arnold's topological proof of Abel-Ruffini.

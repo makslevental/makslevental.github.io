@@ -5,6 +5,7 @@ author:
 - Maksim Levental
 excerpt_separator: <!--more-->
 title: How to port a PyTorch model (OPT) to MLIR
+tags: [mlir, pytorch]
 ---
 
 I'm going to walk through how to port PyTorch model ([OPT](https://github.com/facebookresearch/metaseq/tree/main/projects/OPT)) to MLIR, starting from the :hug: [Hugging Face](https://huggingface.co/facebook/opt-350m) (HF) implementation.
@@ -344,7 +345,7 @@ What this is saying is that the input to some `torch.aten.view` op couldn't be c
 
 or
 
-```llvm
+```mlir
 %132 = torch.aten.view %130, %131 : !torch.tensor<[1,7,768],f32>, !torch.list<int> -> !torch.tensor<[1,7,12,64],f32> loc(#loc13)
 ```
 
@@ -352,7 +353,7 @@ It turns out that `torch.vtensor` (value tensors) can be cast to `RankedTensorTy
 Well why are there any non-value tensors hanging around anyway? Doesn't the `torch-backend-to-linalg-on-tensors-backend-pipeline` pass pipeline include the `torch-maximize-value-semantics` pass, which ostensibly converts all of these non-value tensors to value tensors (somehow)?
 Turns out, for OPT, the `maximize-value-semantics` pass fails. The reason it fails is because, as of today, the `maximize-value-semantics` pass doesn't handle `torch.prim.TupleConstruct`, which operates on views or "view-like" ops; e.g., like in our `opt.torch.mlir`:
 
-```llvm
+```mlir
 ...
 %134 = torch.aten.contiguous %133, %int0 : !torch.tensor<[1,12,7,64],f32>, !torch.int -> !torch.tensor<[1,12,7,64],f32> loc(#loc13)
 ...
@@ -363,7 +364,7 @@ Turns out, for OPT, the `maximize-value-semantics` pass fails. The reason it fai
 
 and so the `%134 = torch.aten.contiguous` never gets "maximized" away and thus `torch.aten.view` gets passed a `torch.tensor`. In fact there are a lot of such `torch.prim.TupleConstruct` ops in `opt.torch.mlir`:
 
-```llvm
+```mlir
     %852 = torch.prim.TupleConstruct %134, %139 : !torch.tensor<[1,12,7,64],f32>, !torch.tensor<[1,12,7,64],f32> -> !torch.tuple<tensor<[1,12,7,64],f32>, tensor<[1,12,7,64],f32>> loc(#loc0)
     %853 = torch.prim.TupleConstruct %199, %204 : !torch.tensor<[1,12,7,64],f32>, !torch.tensor<[1,12,7,64],f32> -> !torch.tuple<tensor<[1,12,7,64],f32>, tensor<[1,12,7,64],f32>> loc(#loc0)
     %854 = torch.prim.TupleConstruct %259, %264 : !torch.tensor<[1,12,7,64],f32>, !torch.tensor<[1,12,7,64],f32> -> !torch.tuple<tensor<[1,12,7,64],f32>, tensor<[1,12,7,64],f32>> loc(#loc0)

@@ -5,6 +5,7 @@ author:
 - Maksim Levental
 excerpt_separator: <!--more-->
 title: MemRef dependence checks in MLIR
+tags: [mlir, compilers]
 ---
 
 
@@ -14,7 +15,7 @@ Suppose you have this MLIR program representing two nested for loops:
 
 
 <a name="firstloopnest"></a>
-```cpp
+```mlir
 // loops.mlir
 
 #map0 = affine_map<(d0, d1) -> (d0)>
@@ -42,7 +43,7 @@ func.func @kernel() {
 
 Note that a more succinct IR is
 
-```cpp
+```mlir
 // loops.mlir
 
 #map0 = affine_map<(d0, d1) -> (d0)>
@@ -87,19 +88,19 @@ def kernel():
 
 What are the loop carried observed? A close look shows that 
 
-```cpp
+```mlir
 %5 = affine.load %0[%arg0 - 2, %arg1] : memref<10x10xf32>
 ```
 
 depends on 
 
-```cpp
+```mlir
 affine.store %cst, %0[%arg0, %arg1] : memref<10x10xf32>
 ```
 
 from two iterations prior of the outer loop (i.e., on `%arg0`) through the affine map 
 
-```cpp
+```mlir
 #map2 = affine_map<(d0, d1) -> (d0 - 2)>
 ...
 %3 = affine.apply #map2(%arg0, %arg1)
@@ -217,7 +218,7 @@ It's a little hard to make out but a slightly less trivial access map better ill
 
 
 <a name="nontrivial"></a>
-```cpp
+```mlir
 affine.for %i0 = 0 to 10 {
   affine.for %i1 = 0 to 7 {
     affine.store %cst, %0[%i0 + 3 * %i1, 4 * %i0 + 5 * %i1] : memref<10x10xf32>
@@ -396,7 +397,7 @@ Domain: 0, Range: 4, Symbols: 0, Locals: 0
 What's happening here is the construction of **a mapping between iteration domain of `srcAccess` to the iteration domain of `dstAccess` through accesses the same memory locations**.
 Recall the loop body:
 
-```bash
+```mlir
   affine.store %cst, %0[%i0 + 3 * %i1, 4 * %i0 + 5 * %i1] : memref<10x10xf32>
   %a = affine.load %0[%i0 + %i1, %i0 + 2 * %i1 + 3] : memref<10x10xf32>
 ```

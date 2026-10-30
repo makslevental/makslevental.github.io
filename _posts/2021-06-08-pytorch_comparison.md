@@ -7,6 +7,7 @@ csl: springer-mathphys-brackets.csl
 link-citations: true
 reference-section-title: References
 title: Comparing the costs of abstraction for DL frameworks
+tags: [pytorch, ml]
 ---
 
 High level abstractions for implementing, training, and testing Deep

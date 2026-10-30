@@ -5,6 +5,7 @@ author:
 - Maksim Levental
 excerpt_separator: <!--more-->
 title: PyTorch Tensor and Operator weedy details
+tags: [pytorch, "c++"]
 ---
 
 This "brain dump" will consist of weedy implementation details about PyTorch that I picked up during my '21 summer internship. I'll describe what a PyTorch `Tensor` actually is (stride, `dtype`, and layout), what are "views", what a PyTorch operator is and how its executed, and how to create a new operator. Note that this post is mostly about the `C++` side of things.

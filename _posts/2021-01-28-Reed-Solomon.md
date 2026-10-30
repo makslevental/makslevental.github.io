@@ -4,6 +4,7 @@ title: Reed-Solomon Error Correcting Codes
 published: true
 use_math: true
 excerpt_separator: <!--more-->
+tags: [information-theory]
 ---
 
 # Shannon's noisy-channel coding theorem
