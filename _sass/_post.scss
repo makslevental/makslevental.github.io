@@ -1,0 +1,284 @@
+@use "tokens" as *;
+
+//
+// Post / page header
+//
+
+.post-header {
+  margin: 36px 0 28px;
+
+  .tags {
+    margin-bottom: 10px;
+  }
+
+  h1 {
+    font-size: 34px;
+    line-height: 1.2;
+    margin: 0 0 8px;
+
+    @include phone {
+      font-size: 28px;
+    }
+  }
+}
+
+//
+// Article + TOC grid. The TOC is a <details> so it collapses on narrow screens;
+// on wide screens it becomes a sticky left sidebar and the toggle is hidden.
+//
+
+.post-body {
+  max-width: var(--measure);
+  margin: 0 auto;
+}
+
+.has-toc {
+  @include wide {
+    display: grid;
+    grid-template-columns: var(--toc-width) minmax(0, var(--measure));
+    gap: 40px;
+    justify-content: center;
+
+    .post-body {
+      margin: 0;
+    }
+  }
+}
+
+.toc {
+  font-size: 13.5px;
+  line-height: 1.45;
+
+  summary {
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 650;
+    list-style-position: inside;
+  }
+
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  li {
+    margin: 0;
+  }
+
+  a {
+    display: block;
+    padding: 4px 0 4px 12px;
+    border-left: 2px solid var(--line);
+    color: var(--muted);
+    overflow-wrap: anywhere;
+
+    &:hover {
+      color: var(--fg);
+      text-decoration: none;
+    }
+
+    &.active {
+      color: var(--accent);
+      border-left-color: var(--accent);
+      font-weight: 600;
+    }
+  }
+
+  li li a {
+    padding-left: 24px;
+  }
+
+  @include narrow {
+    max-width: var(--measure);
+    margin: 0 auto 24px;
+    padding: 12px 16px;
+    background: var(--soft);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+
+    ul {
+      margin-top: 8px;
+    }
+
+    a {
+      border-left: none;
+      padding-left: 0;
+    }
+
+    li li a {
+      padding-left: 14px;
+    }
+  }
+
+  @include wide {
+    position: sticky;
+    top: 24px;
+    align-self: start;
+    max-height: calc(100vh - 48px);
+    overflow-y: auto;
+    margin-top: 6px;
+
+    summary {
+      list-style: none;
+      cursor: default;
+      pointer-events: none;
+      margin-bottom: 10px;
+      color: var(--muted);
+      font-size: 11.5px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+
+      &::-webkit-details-marker {
+        display: none;
+      }
+    }
+  }
+}
+
+//
+// Article content
+//
+
+.entry {
+  > :first-child {
+    margin-top: 0;
+  }
+
+  h1, h2, h3, h4 {
+    scroll-margin-top: 16px;
+  }
+
+  // Posts use `#` for sections, so size h1/h2 inside the article like section/subsection.
+  h1 { font-size: 24px; }
+  h2 { font-size: 19px; }
+  h3 { font-size: 17px; }
+
+  .anchor {
+    margin-left: 0.3em;
+    color: var(--muted);
+    font-weight: 400;
+    opacity: 0;
+    text-decoration: none;
+  }
+
+  :is(h1, h2, h3):hover .anchor,
+  .anchor:focus {
+    opacity: 1;
+  }
+}
+
+//
+// Theorem / lemma / proof callouts
+//
+
+.theorem, .lemma, .proof {
+  margin: 1.2em 0;
+  padding: 12px 16px;
+  background: var(--soft);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+
+  > :first-child { margin-top: 0; }
+  > :last-child { margin-bottom: 0; }
+}
+
+.theorem b:first-of-type, .lemma b:first-of-type {
+  color: var(--accent);
+}
+
+.proof b:first-of-type {
+  color: var(--muted);
+}
+
+//
+// Margin notes (_plugins/sidenotes.rb). On extra-wide screens posts with notes get a
+// third column; notes float into it next to the line that references them, and
+// `clear: right` stacks nearby notes instead of overlapping. Below that, footnotes
+// stay at the bottom and {% marginnote %} notes sit in the text flow.
+//
+
+.has-notes {
+  @include xwide {
+    max-width: calc(var(--toc-width) + var(--measure) + var(--note-width) + 2 * 40px + 48px);
+
+    .post-grid {
+      display: grid;
+      grid-template-columns: var(--toc-width) minmax(0, var(--measure)) var(--note-width);
+      gap: 40px;
+      justify-content: center;
+    }
+
+    .post-body {
+      grid-column: 2;
+      margin: 0;
+    }
+  }
+}
+
+.sidenote {
+  display: none;
+  color: var(--muted);
+  font-size: 13.5px;
+  line-height: 1.55;
+
+  code {
+    font-size: 0.9em;
+  }
+}
+
+.sidenote-p {
+  display: block;
+
+  & + & {
+    margin-top: 0.5em;
+  }
+}
+
+// "1: text" on one line; any further paragraphs of the note start on their own lines.
+.sidenote-number + .sidenote-p {
+  display: inline;
+}
+
+.sidenote-number {
+  margin-right: 0.3em;
+  color: var(--accent);
+  font-weight: 600;
+
+  &::after {
+    content: ":";
+  }
+}
+
+sup[id^="fnref"] a {
+  font-weight: 600;
+  padding: 0 1px;
+}
+
+// {% marginnote %} on narrow screens: an indented aside in the text flow.
+.marginnote {
+  @include narrow-notes {
+    display: block;
+    margin: 0.6em 0;
+    padding-left: 12px;
+    border-left: 2px solid var(--line);
+  }
+}
+
+@include xwide {
+  .has-notes .sidenote {
+    display: block;
+    float: right;
+    clear: right;
+    width: var(--note-width);
+    margin: 0.25em calc(-1 * (var(--note-width) + 40px)) 0.75em 0;
+    position: relative;
+  }
+
+  .footnotes .has-sidenote,
+  .footnotes.all-sidenotes,
+  .has-notes .footnotes-heading {
+    display: none;
+  }
+}

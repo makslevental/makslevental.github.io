@@ -8,6 +8,7 @@ excerpt_separator: <!--more-->
 link-citations: true
 reference-section-title: References
 title: Tensor Networks for Simulating Quantum Circuits on FPGAs
+tags: [quantum, fpga]
 ---
 
 Most research in quantum computing today is performed against

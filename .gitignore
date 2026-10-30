@@ -10,3 +10,5 @@ node_modules
 package.json
 .idea
 vendor
+.superpowers
+docs/superpowers

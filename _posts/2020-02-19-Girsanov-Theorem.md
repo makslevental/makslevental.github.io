@@ -2,6 +2,7 @@
 layout: post
 title: Girsanov theorem intuition
 published: true
+tags: [probability]
 ---
 
 This post follows [this video](https://www.youtube.com/watch?v=vKjbau2Hlrs) and [this video](https://www.youtube.com/watch?v=YF3nXQ6g370&t=96s) and covers the intuition for change of measure for a **stochastic process** and **stochastic differential equations**.

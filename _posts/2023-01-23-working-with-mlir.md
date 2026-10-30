@@ -5,6 +5,7 @@ author:
 - Maksim Levental
 excerpt_separator: <!--more-->
 title: Working with MLIR
+tags: [mlir, "c++"]
 ---
 
 Random tips on working with the MLIR (LLVM) (and, possibly, other large C++ codebases).
@@ -379,7 +380,7 @@ error: 'arith.mulf' op requires the same type for all operands and results
 
 even though
 
-```cpp
+```mlir
 %3 = "arith.constant"() {value = 1.000000e+00 : f64} : () -> f64
 ...
 %6 = "affine.load"(%4, %5, %5) {map = #map1} : (memref<10x10xf64>, index, index) -> f64

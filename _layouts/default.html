@@ -1,7 +1,14 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
+  <script>
+    // Apply a saved Light/Dark choice before first paint; no saved choice means "System".
+    try {
+      var t = localStorage.getItem('theme');
+      if (t === 'light' || t === 'dark') document.documentElement.dataset.theme = t;
+    } catch (e) {}
+  </script>
   <script>
     MathJax = {
       loader: { load: ['[tex]/cancel', '[tex]/boldsymbol'] },
@@ -19,41 +26,21 @@
       }
     };
   </script>
-
-  <script src="http://localhost:35729/livereload.js"></script>
-  <script src="https://togetherjs.com/togetherjs-min.js"></script>
   <script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js">
   </script>
-  <style>
-    .lemma {
-  background-color: #aee3fc;
-    }
-    .theorem {
-  background-color: rgb(247, 136, 117);
-    }
-    .proof {
-  background-color: rgb(250, 236, 110);
-    }
-  /* pre {
-    white-space: pre-wrap;
-  } */
-  </style>
+  <script src="{{ site.baseurl }}/assets/js/site.js" defer></script>
+
   <title>{% if page.title %}{{ page.title }} – {% endif %}{{ site.name }} – {{ site.description }}</title>
 
   {% include meta.html %}
 
-  <!--[if lt IE 9]>
-      <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
-
   <link rel="stylesheet" type="text/css" href="{{ site.baseurl }}/style.css" />
   <link rel="alternate" type="application/rss+xml" title="{{ site.name }} - {{ site.description }}"
     href="{{ site.baseurl }}/feed.xml" />
-
-  <!-- Created with Jekyll Now - http://github.com/barryclark/jekyll-now -->
 </head>
 
-<div style="display:none">
+<body>
+  <div style="display:none">
   $$%
   \notag%
   \newcommand{\R}{\mathbb{R}}%
@@ -78,39 +65,32 @@
   $$
   </div>
 
-<body>
-  <div class="wrapper-masthead">
+  <header class="site-header">
     <div class="container">
-      <header class="masthead clearfix">
-        <a href="{{ site.baseurl }}/" class="site-avatar"><img src="{{ site.avatar }}" /></a>
+      <a href="{{ site.baseurl }}/" class="brand">
+        <img src="{{ site.avatar }}" alt="" width="30" height="30" />
+        <span>{{ site.name }}</span>
+      </a>
 
-        <div class="site-info">
-          <h1 class="site-name"><a href="{{ site.baseurl }}/">{{ site.name }}</a></h1>
-          <p class="site-description">{{ site.description }}</p>
-        </div>
-
-        <nav>
-          <a href="{{ site.baseurl }}/">Blog</a>
-          <a href="{{ site.baseurl }}/about">About</a>
-        </nav>
-      </header>
+      <nav class="site-nav">
+        <a href="{{ site.baseurl }}/" {% if page.url == "/" %}aria-current="page"{% endif %}>Blog</a>
+        <a href="{{ site.baseurl }}/tags/" {% if page.url == "/tags/" %}aria-current="page"{% endif %}>Tags</a>
+        <a href="{{ site.baseurl }}/about/" {% if page.url == "/about/" %}aria-current="page"{% endif %}>About</a>
+        <button class="theme-toggle" type="button" hidden aria-label="Theme: System" title="Theme: System">◐</button>
+      </nav>
     </div>
-  </div>
+  </header>
 
-  <div id="main" role="main" class="container">
+  <main id="main" role="main">
     {{ content }}
-  </div>
+  </main>
 
-  <div class="wrapper-footer">
+  <footer class="site-footer">
     <div class="container">
-      <footer class="footer">
-        <!-- {% include svg-icons.html %} -->
-      </footer>
+      <span>© {{ site.time | date: "%Y" }} {{ site.name }}</span>
+      <a href="{{ site.baseurl }}/feed.xml">RSS</a>
     </div>
-  </div>
-  <!--    <button onclick="TogetherJS(this); return false;">Start TogetherJS</button>-->
-
-  <!-- {% include analytics.html %} -->
+  </footer>
 </body>
 
 </html>

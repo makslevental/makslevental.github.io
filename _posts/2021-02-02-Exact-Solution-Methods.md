@@ -4,6 +4,7 @@ title: Exact Solution Methods for Decision Problems
 published: true
 use_math: true
 excerpt_separator: <!--more-->
+tags: [ml]
 ---
 
 # Definitions

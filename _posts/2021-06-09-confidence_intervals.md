@@ -4,6 +4,7 @@ author:
 - Maksim Levental
 excerpt_separator: <!--more-->
 title: Confidence intervals
+tags: [statistics]
 ---
 
 Suppose $$x_{1},x_{2},\dots,x_{n}$$ are all quantities drawn, without
