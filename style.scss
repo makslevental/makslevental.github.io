@@ -5,9 +5,10 @@
 // IMPORTS
 //
 
-@import "reset";
-@import "variables";
-// Syntax highlighting @import is at the bottom of this file
+@use "sass:meta";
+@use "reset";
+@use "variables" as *;
+// Syntax highlighting is loaded at the bottom of this file
 
 /**************/
 /* BASE RULES */
@@ -307,5 +308,6 @@ footer {
 
 // Settled on moving the import of syntax highlighting to the bottom of the CSS
 // ... Otherwise it really bloats up the top of the CSS file and makes it difficult to find the start
-@import "highlights";
-@import "svg-icons";
+// (meta.load-css rather than @use, since @use must come first and would hoist this CSS to the top)
+@include meta.load-css("highlights");
+@include meta.load-css("svg-icons");

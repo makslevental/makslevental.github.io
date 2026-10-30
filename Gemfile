@@ -13,6 +13,5 @@ gem "jekyll-feed"
 gem "kramdown-parser-gfm"
 gem 'jemoji'
 gem 'nokogiri'
-gem "minima"
 
 gem "webrick", "~> 1.7"
