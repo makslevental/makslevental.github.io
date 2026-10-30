@@ -2,6 +2,7 @@
 layout: post
 title: Calculus of Variations
 published: true
+tags: [math, probability]
 ---
 
 # Radon–Nikodym

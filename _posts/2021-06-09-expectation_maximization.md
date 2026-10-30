@@ -8,6 +8,7 @@ excerpt_separator: <!--more-->
 link-citations: true
 reference-section-title: References
 title: "Expectation Maximization: From the Horse’s Mouth"
+tags: [ml, statistics]
 ---
 
 Expectation maximization (EM) is a way to iteratively approximate the

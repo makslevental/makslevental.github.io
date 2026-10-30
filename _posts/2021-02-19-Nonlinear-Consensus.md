@@ -4,6 +4,7 @@ title: Non-linear consensus protocols
 published: true
 use_math: true
 excerpt_separator: <!--more-->
+tags: [distributed-systems, math]
 ---
 
 This is a summary of [Non-linear protocols for optimal distributed consensus in networks of dynamic agents](https://www.sciencedirect.com/science/article/pii/S0167691106000971).

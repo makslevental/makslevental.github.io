@@ -2,6 +2,7 @@
 layout: post
 title: Cameron-Martin-Girsanov
 published: true
+tags: [probability]
 ---
 
 This post makes rigorous the material in the previous two posts ([Change of Measure]({% post_url 2020-02-17-Change-of-Measure %})

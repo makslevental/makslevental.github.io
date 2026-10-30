@@ -4,6 +4,7 @@ author:
 - Maksim Levental
 excerpt_separator: <!--more-->
 title: Conjugate Gradients
+tags: [math]
 ---
 
 # Quadratic Forms

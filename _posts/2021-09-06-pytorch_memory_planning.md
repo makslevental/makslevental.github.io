@@ -5,6 +5,7 @@ author:
 - Maksim Levental
 excerpt_separator: <!--more-->
 title: PyTorch Memory Planning
+tags: [pytorch, compilers]
 ---
 
 This is the first of two posts which will cover my work on memory planning for PyTorch: this part will cover finishing touches to static memory planning (i.e., that which can be done by only looking at the graph IR), while the next will cover what I'm calling memory planning by memorization (i.e., that which can be done by performing an initial "profiling" pass to capture tensor allocations and frees).

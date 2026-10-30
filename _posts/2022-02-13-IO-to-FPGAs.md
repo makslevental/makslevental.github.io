@@ -5,6 +5,7 @@ author:
 - Maksim Levental
 excerpt_separator: <!--more-->
 title: I/O to FPGAs over PCIE
+tags: [fpga]
 ---
 
 # TL;DR
