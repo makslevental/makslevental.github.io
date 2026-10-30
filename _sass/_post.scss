@@ -236,10 +236,19 @@
   }
 }
 
+// "1: text" on one line; any further paragraphs of the note start on their own lines.
+.sidenote-number + .sidenote-p {
+  display: inline;
+}
+
 .sidenote-number {
-  margin-right: 0.4em;
+  margin-right: 0.3em;
   color: var(--accent);
   font-weight: 600;
+
+  &::after {
+    content: ":";
+  }
 }
 
 sup[id^="fnref"] a {
