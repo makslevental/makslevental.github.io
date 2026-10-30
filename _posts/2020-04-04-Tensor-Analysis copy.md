@@ -2,6 +2,7 @@
 layout: post
 title: Tensor analysis
 published: true
+tags: [math, differential-geometry]
 ---
 
 <!-- In general theory of relativity (GR) the *Einstein field equations* relate the geometry of space-time with the distribution of matter within it. -->

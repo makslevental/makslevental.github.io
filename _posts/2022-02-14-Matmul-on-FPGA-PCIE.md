@@ -5,6 +5,7 @@ author:
 - Maksim Levental
 excerpt_separator: <!--more-->
 title: MatMul on FPGA over PCIE
+tags: [fpga]
 ---
 
 # TL;DR

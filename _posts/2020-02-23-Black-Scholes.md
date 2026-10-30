@@ -2,6 +2,7 @@
 layout: post
 title: Black-Scholes intuition
 published: true
+tags: [probability, finance]
 ---
 
 This post follows [the series of videos starting with this one](https://youtu.be/-qa2B_sCpZQ?list=PLS3zAvd8Oxey3aBAZuglIpQYWhQSH0VTc) and covers derivations of the Black-Scholes model for pricing a European option.

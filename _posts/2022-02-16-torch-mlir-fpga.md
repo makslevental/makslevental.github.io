@@ -5,6 +5,7 @@ author:
 - Maksim Levental
 excerpt_separator: <!--more-->
 title: torch.nn.Conv2d on FPGA through MLIR and Xilinx Vitis HLS
+tags: [fpga, mlir]
 ---
 
 Welcome to my oddysey in trying go from high-level (PyTorch) to low-level (FPGA). Grab a cup of coffee because this is going to take a while...
@@ -113,7 +114,7 @@ where the pipeline definitions can be found [here](https://github.com/makslevent
 
 We only use Torch-MLIR to lower PyTorch to affine; the result is something like this:
 
-```python
+```mlir
 module attributes {torch.debug_module_name = "Conv2d"}  {
   memref.global "private" constant @__constant_1xf32 : memref<1xf32> = dense<1.000000e+00>
   memref.global "private" constant @__constant_1x1x3x3xf32 : memref<1x1x3x3xf32> = dense<1.000000e+00>

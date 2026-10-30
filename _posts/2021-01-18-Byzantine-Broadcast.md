@@ -4,6 +4,7 @@ title: Byzantine Broadcast
 published: true
 use_math: true
 excerpt_separator: <!--more-->
+tags: [distributed-systems]
 ---
 
 # Introduction

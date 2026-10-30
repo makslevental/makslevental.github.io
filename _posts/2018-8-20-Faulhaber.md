@@ -3,6 +3,7 @@ layout: post
 title: Formulae
 published: true
 toc: true
+tags: [math]
 ---
 
 Various formulae

@@ -5,6 +5,7 @@ author:
 - Maksim Levental
 excerpt_separator: <!--more-->
 title: Hello World DMA
+tags: [fpga]
 ---
 
 

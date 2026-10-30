@@ -2,6 +2,7 @@
 layout: post
 title: Change of Measure
 published: true
+tags: [probability]
 ---
 
 This post follows [this video](https://www.youtube.com/watch?v=omrnRshzHhw) and covers change of measure for a single Normal random variable.

@@ -3,6 +3,7 @@ layout: post
 title: Blockchain and State Machine Replication
 published: false
 use_math: true
+tags: [distributed-systems]
 ---
 
 
