@@ -277,7 +277,8 @@ sup[id^="fnref"] a {
   }
 
   .footnotes .has-sidenote,
-  .footnotes.all-sidenotes {
+  .footnotes.all-sidenotes,
+  .has-notes .footnotes-heading {
     display: none;
   }
 }

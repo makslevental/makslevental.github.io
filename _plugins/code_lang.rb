@@ -8,7 +8,7 @@ module CodeLang
   LABELS = { "cpp" => "c++", "plaintext" => nil, "text" => nil }.freeze
 
   BLOCK = /<div class="language-([\w+#.\-]+) highlighter-rouge">/
-  HEADING = %r{<(h[1-3]) id="([^"]+)">(.*?)</\1>}m
+  HEADING = %r{<(h[1-3]) id="([^"]+)"([^>]*)>(.*?)</\1>}m
 
   def self.process(html, anchors:)
     html = html.gsub(BLOCK) do
@@ -19,8 +19,8 @@ module CodeLang
     return html unless anchors
 
     html.gsub(HEADING) do
-      tag, id, inner = Regexp.last_match.captures
-      %(<#{tag} id="#{id}">#{inner}<a class="anchor" href="##{id}" aria-label="Link to this section">#</a></#{tag}>)
+      tag, id, attrs, inner = Regexp.last_match.captures
+      %(<#{tag} id="#{id}"#{attrs}>#{inner}<a class="anchor" href="##{id}" aria-label="Link to this section">#</a></#{tag}>)
     end
   end
 end
