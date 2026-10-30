@@ -68,6 +68,7 @@
   --font-mono: ui-monospace, "SF Mono", SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
   --measure: 680px;
   --toc-width: 200px;
+  --note-width: 220px;
   --radius: 8px;
 }
 
@@ -84,6 +85,19 @@
 // Wide enough for the TOC sidebar next to the article.
 @mixin wide {
   @media (min-width: 1000px) {
+    @content;
+  }
+}
+
+// Wide enough for TOC + article + margin notes.
+@mixin xwide {
+  @media (min-width: 1240px) {
+    @content;
+  }
+}
+
+@mixin narrow-notes {
+  @media (max-width: 1239px) {
     @content;
   }
 }
