@@ -48,7 +48,13 @@ module Sidenotes
       end
       converted.size == notes.size ? block.sub('class="footnotes"', 'class="footnotes all-sidenotes"') : block
     end
+    return html unless converted.size == notes.size
+
+    # Every note is in the margin, so the post's own "Footnotes" heading (and its TOC
+    # entry) would head an empty section on wide screens; mark them so CSS can hide them.
     html
+      .sub(/<(h[1-6]) id="footnotes"/, '<\1 id="footnotes" class="footnotes-heading"')
+      .sub(%r{<li><a href="#footnotes">}, '<li class="footnotes-heading"><a href="#footnotes">')
   end
 
   class MarginNoteTag < Liquid::Block

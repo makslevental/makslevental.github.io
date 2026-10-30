@@ -81,6 +81,7 @@
     var line = window.innerHeight * 0.3;
     var active = headings[0];
     for (var i = 0; i < headings.length; i++) {
+      if (!headings[i].offsetParent) continue; // hidden, e.g. "Footnotes" when notes are in the margin
       if (headings[i].getBoundingClientRect().top <= line) active = headings[i];
       else break;
     }
