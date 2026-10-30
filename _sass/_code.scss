@@ -1,0 +1,94 @@
+@use "tokens" as *;
+
+code, kbd, pre, samp {
+  font-family: var(--font-mono);
+}
+
+// Inline code
+:not(pre) > code {
+  font-size: 0.85em;
+  padding: 0.15em 0.4em;
+  border-radius: 6px;
+  background: var(--inline-code-bg);
+  color: var(--code-fg);
+  overflow-wrap: break-word;
+}
+
+// Code blocks. kramdown + Rouge emit
+//   <div class="language-x highlighter-rouge" data-lang="x"><div class="highlight"><pre class="highlight"><code>
+// (data-lang is added by _plugins/code_lang.rb).
+div.highlighter-rouge, figure.highlight {
+  margin: 1.2em 0;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--code-bg);
+  overflow: hidden;
+
+  &[data-lang]::before {
+    content: attr(data-lang);
+    display: block;
+    padding: 4px 14px;
+    background: var(--code-tab-bg);
+    border-bottom: 1px solid var(--line);
+    color: var(--muted);
+    font: 12px/1.6 var(--font-mono);
+  }
+
+  .highlight {
+    margin: 0;
+    background: none;
+  }
+}
+
+pre {
+  margin: 1.2em 0;
+  padding: 12px 14px;
+  overflow-x: auto;
+  font-size: 13.5px;
+  line-height: 1.55;
+  color: var(--code-fg);
+  tab-size: 4;
+
+  .highlighter-rouge &, .highlight & {
+    margin: 0;
+  }
+}
+
+// Bare <pre> blocks written as raw HTML in posts
+.entry > pre {
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--code-bg);
+}
+
+pre code {
+  font-size: inherit;
+  background: none;
+  padding: 0;
+}
+
+//
+// Rouge token colors (GitHub light/dark via tokens)
+//
+
+.highlight {
+  .c, .ch, .cm, .c1, .cs, .cd { color: var(--hl-comment); font-style: italic; }
+  .cp, .cpf { color: var(--hl-keyword); }
+  .k, .kd, .kn, .kp, .kr, .kv, .ow { color: var(--hl-keyword); }
+  .kc, .no { color: var(--hl-number); }
+  .kt, .nc, .nn { color: var(--hl-type); }
+  .s, .sa, .sb, .sc, .dl, .sd, .s2, .se, .sh, .si, .sx, .sr, .s1, .ss { color: var(--hl-string); }
+  .m, .mb, .mf, .mh, .mi, .il, .mo, .mx { color: var(--hl-number); }
+  .nf, .fm, .na, .nd, .nl { color: var(--hl-func); }
+  .nb, .bp { color: var(--hl-func); }
+  .nv, .vc, .vg, .vi, .vm { color: var(--hl-var); }
+  .nt { color: var(--hl-tag); }
+  .ne { color: var(--hl-keyword); }
+  .gi { color: var(--hl-ins); background: var(--hl-ins-bg); }
+  .gd { color: var(--hl-del); background: var(--hl-del-bg); }
+  .gh, .gu { color: var(--hl-func); font-weight: 700; }
+  .ge { font-style: italic; }
+  .gs { font-weight: 700; }
+  .gp { color: var(--hl-comment); }
+  .err { color: inherit; background: none; }
+}

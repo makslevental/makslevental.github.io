@@ -1,0 +1,19 @@
+{%- comment -%}
+  The post's excerpt, unless it has no paragraph (e.g. the post opens with a heading or
+  an HTML comment); then the first paragraph of real prose from the post body.
+{%- endcomment -%}
+{%- assign excerpt = include.post.excerpt -%}
+{%- unless excerpt contains "<p>" -%}
+  {%- assign excerpt = "" -%}
+  {%- assign paragraphs = include.post.content | split: "<p>" -%}
+  {%- for chunk in paragraphs offset: 1 -%}
+    {%- assign para = chunk | split: "</p>" | first -%}
+    {%- assign text = para | strip_html | strip -%}
+    {%- assign lead = text | slice: 0, 2 -%}
+    {%- if text.size >= 40 and lead != "\[" and lead != "$$" -%}
+      {%- assign excerpt = para | prepend: "<p>" | append: "</p>" -%}
+      {%- break -%}
+    {%- endif -%}
+  {%- endfor -%}
+{%- endunless -%}
+{{ excerpt }}

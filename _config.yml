@@ -63,10 +63,8 @@ kramdown:
   input: GFM
   syntax_highlighter: rouge
   syntax_highlighter_opts:
-    css_class: 'thankful_eyes'
     escape: true
 
-# Set the Sass partials directory, as we're using @imports
 sass:
   style: :expanded # You might prefer to minify using :compressed
 
@@ -83,3 +81,4 @@ exclude:
   - LICENSE
   - README.md
   - CNAME
+  - docs

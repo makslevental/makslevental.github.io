@@ -2,19 +2,15 @@
 layout: default
 ---
 
-<div class="posts">
-  {% for post in site.posts %}
-    <article class="post">
-      <h1 style="display: inline-block;font-size: 30px"><a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a></h1>
-      &emsp; <div style="display: inline-block;"class="date">
-        {{ post.date | date: "%B %e, %Y" }}
-      </div>
-      <hr style="clear:both;"/>
-      <div class="entry">
-        {{ post.excerpt }}
-      </div>
-
-      <a href="{{ site.baseurl }}{{ post.url }}" class="read-more">Read More</a>
-    </article>
-  {% endfor %}
+<div class="container container-narrow">
+  <ul class="feed">
+    {%- for post in site.posts %}
+    <li class="feed-item">
+      {% include post-meta.html post=post %}
+      <h2><a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a></h2>
+      <div class="feed-excerpt">{% include feed-excerpt.html post=post %}</div>
+      {% include post-tags.html tags=post.tags %}
+    </li>
+    {%- endfor %}
+  </ul>
 </div>

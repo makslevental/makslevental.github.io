@@ -2,16 +2,29 @@
 layout: default
 ---
 
-<article class="post">
-  <h1 style="display: inline-block; font-size: 30px">{{ page.title }}</h1>
-  &emsp; <div style="display: inline-block;"class="date">
-    {{ page.date | date: "%B %e, %Y" }}
-  </div>
-  <hr style="clear:both;"/>
+{%- assign h1s = content | split: "<h1 " | size | minus: 1 -%}
+{%- assign h2s = content | split: "<h2 " | size | minus: 1 -%}
+{%- assign headings = h1s | plus: h2s -%}
 
-  <div class="entry">
-    {% include toc.html html=content sanitize=true %}
-    {{ content }}
-  </div>
+<article class="post container">
+  <div class="{% if headings >= 2 %}has-toc{% endif %}">
+    {%- if headings >= 2 %}
+    <details class="toc" open>
+      <summary>Contents</summary>
+      {% include toc.html html=content sanitize=true h_min=1 h_max=2 %}
+    </details>
+    {%- endif %}
 
+    <div class="post-body">
+      <header class="post-header">
+        {% include post-tags.html tags=page.tags %}
+        <h1>{{ page.title }}</h1>
+        {% include post-meta.html post=page %}
+      </header>
+
+      <div class="entry">
+        {{ content }}
+      </div>
+    </div>
+  </div>
 </article>

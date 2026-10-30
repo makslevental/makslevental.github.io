@@ -1,0 +1,28 @@
+---
+layout: page
+title: Tags
+permalink: /tags/
+---
+
+{%- capture names -%}
+  {%- for tag in site.tags -%}{{ tag[0] }}{% unless forloop.last %}|{% endunless %}{%- endfor -%}
+{%- endcapture -%}
+{%- assign tag_names = names | split: "|" | sort_natural -%}
+
+<div class="tags tag-index">
+  {%- for name in tag_names %}
+  <a class="tag" href="#{{ name | slugify }}">{{ name }} · {{ site.tags[name].size }}</a>
+  {%- endfor %}
+</div>
+
+{%- for name in tag_names %}
+{%- assign posts = site.tags[name] | sort: "date" | reverse %}
+<section class="tag-section" id="{{ name | slugify }}">
+  <h2>{{ name }} <span class="count">{{ posts.size }}</span></h2>
+  <ul>
+    {%- for post in posts %}
+    <li><time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%b %-d, %Y" }}</time><a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a></li>
+    {%- endfor %}
+  </ul>
+</section>
+{%- endfor %}
