@@ -140,7 +140,7 @@ Number 3 is the crucial change. Before LFTR, with no users of `%inc` except the 
 ```
 {% endraw %}
 
-(`<nw>` is SCEV's "no self-wrap" flag; together with the `sext` folded into the recurrence, it means the four addresses advance in lockstep with constant offsets.)
+(`nsw` is "spelled" `<nw>` by SCEV)
 
 # Weeds: Why SCEV gave up
 
