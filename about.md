@@ -6,7 +6,7 @@ permalink: /about/
 
 ## Bio
 
-Max Levental is a (n+1)th year PhD student at University of Chicago working on compilery things, for science, with Ian Foster and the Chards (Kyle and Ryan). He hails from the nether regions of Eastern Europe (Moldova) by way of the nether regions of USA (Florida). He knows enough about some things (compilers, FPGAs, deep learning) to be dangerous but primarily uses that knowledge to annoy his group mates (and his wife). 
+Max is a software engineer working on compilery things. He hails from the nether regions of Eastern Europe (Moldova) by way of the nether regions of the USA (Florida). He knows enough about some things (compilers, FPGAs, deep learning) to be dangerous but primarily uses that knowledge to annoy his workmates (and his wife).
 
 <p align="center">
   <img src="/images/pc.jpg"/>
