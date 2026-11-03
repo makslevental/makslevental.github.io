@@ -142,6 +142,10 @@ Number 3 is the crucial change. Before LFTR, with no users of `%inc` except the 
 
 (`nsw` is "spelled" `<nw>` by SCEV)
 
+# Resolution
+
+The resolution was not a magical fix: I simply guarded against both LFTR and sinking in the `IndVarSimplify` pass itself (early exit before those transformations ran) and that sufficiently recovered performance without sacrificing (much) performance elsewhere. The compiler gods giveth and the compiler gods taketh 🤷.
+
 # Weeds: Why SCEV gave up
 
 SCEV doesn't model floating point at all: `%f` isn't an add recurrence, it's just an opaque `float` phi.
@@ -150,10 +154,6 @@ When the exit condition depends on phis whose values can be constant folded from
 
 That was changed in [#90942](https://github.com/llvm/llvm-project/pull/90942) _intentionally_: if an operation can produce a different result at run time than the one the constant folder computes (because later passes are allowed to reassociate it, contract it into an FMA, replace a divide with a reciprocal multiply, ...), then a trip count computed by folding it at compile time isn't actually a fact about the program.
 So constant folding got an `AllowNonDeterministic` flag, SCEV passes `false`, and with `false` FP binary operators carrying `nsz`, `reassoc`, `contract` or `arcp` don't fold (and neither do NaN results or FP libcalls). Since `-ffast-math` implies all four of those, `fadd fast` no longer folds and the trip count is no longer computed by SCEV.
-
-# Resolution
-
-The resolution was not a magical fix: I simply guarded against both LFTR and sinking in the `IndVarSimplify` pass itself (early exit before those transformations ran) and that sufficiently recovered performance without sacrificing (much) performance elsewhere. The compiler gods giveth and the compiler gods taketh 🤷.
 
 # Footnotes
 
